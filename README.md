@@ -1,7 +1,7 @@
 # What is OpenSource NY?
-    OpenSourceNY App(OSNY) is a tool that tracks contributions made by a participant, and then rank the participants using a leaderboard-esque ranking system. Specifically, it is a tool designed to track participation in Open Source NYC's open source contribution challenge held over the summer in which participants are tasked to contribute, such as opening a pull request or issue, to open source projects in any way.
+  OpenSourceNY App(OSNY) is a tool that tracks contributions made by a participant, and then rank the participants using a leaderboard-esque ranking system. Specifically, it is a tool designed to track participation in Open Source NYC's open source contribution challenge held over the summer in which participants are tasked to contribute, such as opening a pull request or issue, to open source projects in any way.
 
-    In other terms, the tool should let participants register to join the challenge or send an email of interest, record activity metrics, and rank participants using a leaderboard.
+  In other terms, the tool should let participants register to join the challenge or send an email of interest, record activity metrics, and rank participants using a leaderboard.
 
 
   For any users that opts in, given a GitHub repo and GitHub username, the software will keep track of stats for that users in relation to the GitHub repo.
@@ -10,6 +10,9 @@
   - WIP
 
 # How to contribute
+  PLEASE FORK, and follow a proper git work flow
+  when you have a feature done, do a PR
+  PLEASE DO NOT MAKE DIRECT EDITS TO THIS REPO
 
 
 # For start(this section is for initial development of this project, will be removed from this README.md once we have a base to build on top of)

@@ -1,0 +1,23 @@
+{
+  "name": "opensource-ny",
+  "version": "1.0.0",
+  "description": "a tool that tracks contributions made by a participant on github",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yizongk/OpenSource-NY.git"
+  },
+  "author": "yizongk nCarol595 gutierrezjdr gsvetleen mxmsunny Undid-Iridium Chocolate-Spaghet rramnauth11",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/yizongk/OpenSource-NY/issues"
+  },
+  "homepage": "https://github.com/yizongk/OpenSource-NY#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

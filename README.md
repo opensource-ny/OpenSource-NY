@@ -9,6 +9,14 @@
 # Features (including stats that we will keep track of)
   - WIP
 
+# Dependency
+* npm
+
+# How to run
+  ```bash
+  npm start
+  ```
+
 # How to contribute
   PLEASE FORK, and follow a proper git work flow
   when you have a feature done, do a PR

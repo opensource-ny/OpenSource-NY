@@ -14,6 +14,8 @@
 
 # How to run
   ```bash
+  cd src/myapp
+  npm install
   npm start
   ```
 

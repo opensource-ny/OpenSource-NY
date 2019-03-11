@@ -14,6 +14,8 @@
   when you have a feature done, do a PR
   PLEASE DO NOT MAKE DIRECT EDITS TO THIS REPO
 
+  Refer to [CONTRIBUTE.md](./CONTRIBUTE.md)
+
 
 # For start(this section is for initial development of this project, will be removed from this README.md once we have a base to build on top of)
   Here are the 4 features that we would like to have as a base to work off on:

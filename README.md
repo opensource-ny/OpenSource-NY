@@ -19,6 +19,8 @@
   npm start
   ```
 
+  Now go to your browser and open http://localhost:3000/
+
 # How to contribute
   PLEASE FORK, and follow a proper git work flow
   when you have a feature done, do a PR

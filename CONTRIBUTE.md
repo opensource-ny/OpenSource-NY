@@ -5,6 +5,14 @@
   * Frontend:
     - React JS
 
+# Getting started 
+(The following are only suggestions, you can do anything anyway you like, but will need to make sense to be merged)
+  * Express lives in src/myapp/server.js 
+    - Code your API in this file, such as log in, get data, etc.
+  * React lives in src/myapp/client/src/App.js
+    - This js script will edit what you see on the main page of front end (http://localhost:3000/).
+  
+
 # Workflow
   Please use the standard git work flow. 
 

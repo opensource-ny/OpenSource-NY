@@ -8,8 +8,6 @@ const handleListen = require('./handleListen.js');
 
 app.listen( port, handleListen(console.log, port) );
 
-app.get('/', response);
+app.get('/', response.hello);
 
-app.get( '/express_backend', (req, res) => {
-    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
-});
+app.get( '/express_backend', response.express_backend);

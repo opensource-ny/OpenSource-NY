@@ -13,9 +13,15 @@
 * npm
 
 # How to run
+  In one terminal, run this to get the server running:
   ```bash
   cd src/myapp
   npm install
+  npm start
+  ```
+  In a second terminal, run this to get the front end running:
+  ```bash
+  cd src/myapp/client
   npm start
   ```
 

@@ -5,12 +5,15 @@ import './App.css';
 class App extends Component {
   state = {
     data: null
-  };
+  }
 
-  componetDidMount() {
+  componentDidMount() {
     // Call our fetch function below once the component mounts
     this.callBackendAPI()
-      .then( res => this.setState({data: res.express}) )
+      .then( res => { 
+        this.setState({data: res.express},
+        console.log("This ran")
+      )})
       .catch( err => console.log(err) );
   }
 
@@ -19,6 +22,7 @@ class App extends Component {
     const response = await fetch('/express_backend');
     const body = await response.json();
 
+    console.log("calling back end happened");
     if( response.status !== 200 ) {
       throw Error(body.message)
     }
@@ -40,7 +44,7 @@ class App extends Component {
         </header>
 
         {/* Render the newly fetched data insdie of this.state.data */}
-        <p className="App-intro">Something here{this.state.data}</p>
+        <p className="App-intro">Something here:{this.state.data}</p>
       </div>
     );
   }

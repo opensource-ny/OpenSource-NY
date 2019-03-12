@@ -19,5 +19,8 @@
   "homepage": "https://github.com/yizongk/OpenSource-NY#readme",
   "dependencies": {
     "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "jest": "^24.5.0"
   }
 }

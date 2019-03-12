@@ -10,7 +10,15 @@
   - WIP
 
 # Dependency
-* npm 3.5.2
+* npm 3.5.2 (might need to install node.js as well, someone please check! And open an issue if node.js is needed)
+
+  For Ubuntu 18.04.2 LTS bionic:
+```shell
+sudo apt-get update --yes
+sudo apt-get install npm --yes
+sudo apt-get install postgresql postgresql-contrib
+```
+
 
 # How to run
   In one terminal, run this to get the server running:
@@ -32,6 +40,8 @@
   PLEASE FORK, and follow a proper git work flow
   when you have a feature done, do a PR
   PLEASE DO NOT MAKE DIRECT EDITS TO THIS REPO
+
+  If you see any bugs, on documentations, codes, etc please open an issue describing the bug. Thanks!
 
   Refer to [CONTRIBUTE.md](./CONTRIBUTE.md)
 

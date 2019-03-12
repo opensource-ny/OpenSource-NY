@@ -23,7 +23,9 @@
   Here is an example workflow with commands
   
   Step 1-3
+  
   ```shell
+  ...On github make a fork of this repo...
   git clone https://github.com/YOUR_GITHUB_NAME/OpenSource-NY.git
   git remote add upstream https://github.com/yizongk/OpenSource-NY.git
   ```

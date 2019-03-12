@@ -10,7 +10,7 @@
   - WIP
 
 # Dependency
-* npm
+* npm 3.5.2
 
 # How to run
   In one terminal, run this to get the server running:

@@ -1,6 +1,6 @@
 /* Test to be run by Jest */
 
-const response = require('../../response.js');
+const response = require('../../server/src/response.js');
 
 test(
     'should call res.() with "Hello World!" and "{ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT!" }"',

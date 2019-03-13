@@ -1,6 +1,6 @@
 /* Test to be run by Jest */
 
-const handleListen = require('../../handleListen.js');
+const handleListen = require('../../server/src/handleListen.js');
 
 test(
     'should call log with Example app...',

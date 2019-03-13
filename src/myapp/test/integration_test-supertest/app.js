@@ -2,8 +2,8 @@
 /* NOTE: This doesn't test the actual code in REACT App.js */
 
 const express = require('express');
-const handleListen = require('../../handleListen.js');
-const response = require('../../response.js');
+const handleListen = require('../../server/src/handleListen.js');
+const response = require('../../server/src/response.js');
 
 const app = express();
 const PORT = 3000;

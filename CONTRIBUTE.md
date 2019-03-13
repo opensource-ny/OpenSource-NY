@@ -7,7 +7,7 @@
 
 # Getting started 
 (The following are only suggestions, you can do anything anyway you like, but will need to make sense to be merged)
-  * Express lives in src/myapp/server.js 
+  * Express lives in src/myapp/server/src/server.js 
     - Code your API in this file, such as log in, get data, etc.
   * React lives in src/myapp/client/src/App.js
     - This js script will edit what you see on the main page of front end (http://localhost:3000/).
@@ -59,9 +59,9 @@
     - Jest (Unit testing)
     - SuperTest in conjunction with Jest(Integration testing, or end-to-end test that tests the whole application)
 
-  The following command will run *test.js in src/myapp/test
+  The following command will run *test.js in src/myapp/test/src/
    
-  In src/myapp run:
+  In src/myapp/test run:
   ```shell
   npm test
   ```

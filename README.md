@@ -23,7 +23,7 @@ sudo apt-get install postgresql postgresql-contrib
 # How to run
   In one terminal, run this to get the server running:
   ```bash
-  cd src/myapp
+  cd src/myapp/server
   npm install   
   npm start
   ```

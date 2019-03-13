@@ -4,7 +4,7 @@
   "description": "a tool that tracks contributions made by a participant on github",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "start": "node server.js"
   },
   "repository": {
@@ -28,7 +28,7 @@
     "verbose": true,
     "collectCoverage": true,
     "roots": [
-      "test/unit_test-jest"
+      "test/"
     ]
   }
 }

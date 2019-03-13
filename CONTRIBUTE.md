@@ -57,8 +57,10 @@
 
   * Tools
     - Jest (Unit testing)
-    - SuperTest (Integration testing, or end-to-end test that tests the whole application)
+    - SuperTest in conjunction with Jest(Integration testing, or end-to-end test that tests the whole application)
 
+  The following command will run *test.js in src/myapp/test
+   
   In src/myapp run:
   ```shell
   npm test

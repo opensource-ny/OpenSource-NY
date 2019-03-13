@@ -10,7 +10,7 @@
   - WIP
 
 # Dependency
-* npm 3.5.2 (might need to install node.js as well, someone please check! And open an issue if node.js is needed)
+* npm 3.5.2 (All the other sub dependencies are in various package.json files, doing an 'npm install' on that directory will install the dependencies)
 
   For Ubuntu 18.04.2 LTS bionic:
 ```shell

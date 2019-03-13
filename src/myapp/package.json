@@ -27,8 +27,8 @@
   "jest": {
     "verbose": true,
     "collectCoverage": true,
-    "testPathIgnorePatterns": [
-      "client/"
+    "roots": [
+      "test/unit_test-jest"
     ]
   }
 }

@@ -58,6 +58,11 @@
   * Tools
     - Jest (Unit testing)
     - SuperTest (Integration testing, or end-to-end test that tests the whole application)
+
+  In src/myapp run:
+  ```shell
+  npm test
+  ```
  
 ## Jest
 

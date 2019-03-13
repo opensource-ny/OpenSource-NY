@@ -1,13 +1,17 @@
+/* Our front line of communication, clients will access this page first for any requests */
+
 const express = require('express');
 const app = express();
 const port = 5000;
+const response = require('./response.js');
+const handleListen = require('./handleListen.js');
 
-app.listen( port, () => console.log( `Example app listening on port ${port}!` ) );
 
-app.get( '/', (req, res) => {
-    res.send('Hello World!')
-} );
+// Let app start listening to port, will output error if anything goes wrong
+app.listen( port, handleListen(console.log, port) );
 
-app.get( '/express_backend', (req, res) => {
-    res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
-});
+
+// Our API and their approtiate functions
+app.get('/', response.hello);
+
+app.get( '/express_backend', response.express_backend);

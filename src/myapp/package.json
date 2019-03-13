@@ -4,7 +4,7 @@
   "description": "a tool that tracks contributions made by a participant on github",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --detectOpenHandles",
     "start": "node server.js"
   },
   "repository": {
@@ -19,5 +19,16 @@
   "homepage": "https://github.com/yizongk/OpenSource-NY#readme",
   "dependencies": {
     "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "jest": "^24.5.0",
+    "supertest": "^4.0.0"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "roots": [
+      "test/"
+    ]
   }
 }

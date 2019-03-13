@@ -53,5 +53,28 @@
   git push origin master
   ```
 
-# Test cases
-  For each feature, if possible, list test cases and expected outcome. Or some automated test.
+# Testing
+
+  * Tools
+    - Jest (Unit testing)
+    - SuperTest in conjunction with Jest(Integration testing, or end-to-end test that tests the whole application)
+
+  The following command will run *test.js in src/myapp/test
+   
+  In src/myapp run:
+  ```shell
+  npm test
+  ```
+ 
+## Jest
+
+  To learn how to use Jest, refer to [jest-github-doc](https://jest-bot.github.io/jest/docs/getting-started.html)
+
+  But the gist of it is that:
+  * In your package.json under "scripts", add "test": "jest". This will allow jest to parse the json file and find the 'jest' keyword. [More info](https://jestjs.io/docs/en/configuration#bail-number-boolean)
+  * Then write some test cases for some piece of code you wrote. Refer to [node-js-testing-pt2](https://codeburst.io/revisiting-node-js-testing-part-2-14f50f8ddab5) and [jest-github-doc](https://jest-bot.github.io/jest/docs/getting-started.html)
+
+  For each feature, if possible, write some test using to be used by Jest.
+
+
+[Good -Read-On-Testing-medium](https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a)

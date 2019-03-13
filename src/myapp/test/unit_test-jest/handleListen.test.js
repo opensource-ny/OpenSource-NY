@@ -5,7 +5,7 @@ const handleListen = require('../../handleListen.js');
 test(
     'should call log with Example app...',
     () => {
-        const port = 3000;
+        const port = 5000;
         const log = jest.fn();
         handleListen(log, port);
         expect(log.mock.calls).toHaveLength(1);

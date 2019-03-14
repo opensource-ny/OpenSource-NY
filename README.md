@@ -21,13 +21,13 @@ sudo apt-get install postgresql postgresql-contrib
 
 
 # How to run
-  In one terminal, run this to get the server running:
+  In one terminal, run this to get the server running (only need to do npm install on your first time, to install all the node_modules):
   ```bash
   cd src/myapp/server
   npm install   
   npm start
   ```
-  In a second terminal, run this to get the front end running:
+  In a second terminal, run this to get the front end running (only need to do npm install on your first time, to install all the node_modules):
   ```bash
   cd src/myapp/client
   npm install

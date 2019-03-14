@@ -72,7 +72,7 @@ sudo apt-get install postgresql postgresql-contrib
   * Responsive Website
     - For Mobile
     - For Desktop
-  * Data visualizaition of the stats that we will keep track of
+  * Data visualization of the stats that we will keep track of
   * Any other features
     - MUST ASK Jessie Contour for feedback at contour.j@gmail.com
 <h2>OpenSourceNY App</h2>

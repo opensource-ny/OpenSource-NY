@@ -18,7 +18,7 @@
 
   1. Create a fork.
   2. Clone that fork to your local computer.
-  3. Add an upstream tracking https://github.com/yizongk/OpenSource-NY.git
+  3. Add an upstream tracking https://github.com/opensource-ny/OpenSource-NY
   4. Update your local repo from upstream by doing a pull.
   5. Create feature-branch in your fork.
   6. Edit and test feature-branch in your fork.
@@ -35,7 +35,7 @@
   ```shell
   ...On github make a fork of this repo...
   git clone https://github.com/YOUR_GITHUB_NAME/OpenSource-NY.git
-  git remote add upstream https://github.com/yizongk/OpenSource-NY.git
+  git remote add upstream https://github.com/opensource-ny/OpenSource-NY
   ```
 
   Step 4-10 (Assumes origin is tracking your fork and upstream is tracking main repo)

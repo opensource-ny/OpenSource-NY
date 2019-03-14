@@ -43,7 +43,7 @@ sudo apt-get install postgresql postgresql-contrib
   ``` 
   To fix:  [Reference](https://github.com/facebook/jest/issues/3254)
 
-  * add 'fs.inotify.max_user_watches=20000' without the single quotes into your /etc/sysctl.conf on the very last line. Change the number to however much you want, the error aboves results from the number being too small, so change it to a big enough number. How big? I don't know, depends on how much files you have in your REACT App.
+  * add 'fs.inotify.max_user_watches=20000' without the single quotes into your /etc/sysctl.conf on the very last line. Change the number to however much you want. The error aboves results from the number being too small, so change it to a big enough number. How big? I don't know, depends on how much files you have in your REACT App.
   * After you edit that file, run the following to load in the [sysctl](https://linux.die.net/man/8/sysctl) setting from /etc/sysctl.conf
   ```shell
   sudo sysctl -p

@@ -56,7 +56,7 @@ sudo apt-get install postgresql postgresql-contrib
 
   If you see any bugs, on documentations, codes, etc please open an issue describing the bug. Thanks!
 
-  Refer to [CONTRIBUTE.md](./CONTRIBUTE.md)
+  Refer to [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 
 # For start(this section is for initial development of this project, will be removed from this README.md once we have a base to build on top of)

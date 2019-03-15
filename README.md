@@ -1,5 +1,5 @@
 # What is OpenSource NY?
-  OpenSourceNY App(OSNY) is a tool that tracks contributions made by a participant, and then rank the participants using a leaderboard-esque ranking system. Specifically, it is a tool designed to track participation in Open Source NYC's open source contribution challenge held over the summer in which participants are tasked to contribute, such as opening a pull request or issue, to open source projects in any way.
+  OpenSourceNY App(OSNY) is a tool that tracks contributions made by a participant, and then rank the participants using a leaderboard-esque ranking system. Specifically, it is a tool designed to track participation in [Open Source NYC](https://www.meetup.com/Open-Source-NYC/)'s open source contribution challenge held over the summer in which participants are tasked to contribute, such as opening a pull request or issue, to open source projects in any way.
 
   In other terms, the tool should let participants register to join the challenge or send an email of interest, record activity metrics, and rank participants using a leaderboard.
 
@@ -72,7 +72,7 @@ sudo apt-get install postgresql postgresql-contrib
   * Responsive Website
     - For Mobile
     - For Desktop
-  * Data visualizaition of the stats that we will keep track of
+  * Data visualization of the stats that we will keep track of
   * Any other features
     - MUST ASK Jessie Contour for feedback at contour.j@gmail.com
 <h2>OpenSourceNY App</h2>

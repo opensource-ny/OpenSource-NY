@@ -7,6 +7,7 @@
   For any users that opts in, given a GitHub repo and GitHub username, the software will keep track of stats for that users in relation to the GitHub repo.
 
 # Features (including stats that we will keep track of)
+  - Listing Pull Requests from a specified Github Repo.
   - WIP
 
 # Dependency

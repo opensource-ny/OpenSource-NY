@@ -6,9 +6,19 @@ class App extends Component {
   state = {
     data: null,
     repoName: '',       // Expects this form: 'Github_user_name/repo_name' without the quotes
-    dataValid: false,
+    repoValid: false,
     loading: false,
     githubPRsInfo: []
+  }
+
+  resetState() {
+    this.setState({
+      data: null,
+      repoName: '',       
+      repoValid: false,
+      loading: false,
+      githubPRsInfo: []
+    })
   }
 
   componentDidMount() {
@@ -34,25 +44,30 @@ class App extends Component {
     return body;
   }
 
-  handleDataChange(event) {
-    //Validation, passes if it's this form: 'Github_user_name/repo_name' without the quotes
+  handleRepoChange(event) {
+    this.resetState();
+    // Validation, passes if it's this form: 'Github_user_name/repo_name' without the quotes
+    // Validation, checks if repo is accessible
     const value = event.target.value;
-    if( !value.includes('/') ) {      // must also check that it only has one instance of it
+    //if( !value.includes('/') ) {      // must also check that it only has one instance of it
+    if( (value.split().length - 1) === 1 ) { 
       console.log(value);
       this.setState({
         repoName: value,
-        dataValid: false
+        repoValid: false
       });
+    } else if(false/* valid pathname */) {
+
     } else {
       this.setState({
         repoName: value,
-        dataValid: true
+        repoValid: true
       });
     }
     
   }
 
-  handleDataSubmit() {// if repo dones't exist?
+  handleRepoSubmit() {// if repo dones't exist?
     console.log(this.state.repoName);
 
     this.setState({ loading: true });
@@ -69,6 +84,29 @@ class App extends Component {
 
   }
 
+  reportPRList() {
+    {
+      console.log(this.state.githubPRsInfo.length);
+      // if map (contain info about pr) is empty, have it output some message about it
+      if(this.state.githubPRsInfo.length !== undefined) {
+        return(
+            this.state.githubPRsInfo.map( githubPRsInfo => (
+              <div key={githubPRsInfo.id}>
+                <h3><a href={githubPRsInfo.url}>{githubPRsInfo.id}</a></h3>
+                <p>{githubPRsInfo.title}</p>
+              </div>
+            ))
+        );
+      } else {
+        return(
+          <h3>
+            No information!
+          </h3>
+        );
+      }
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -77,18 +115,23 @@ class App extends Component {
         <p className="App-intro">Something here:{this.state.data}</p>
 
         <div className="PRs">
-          <input className={(this.state.dataValid ? '' : 'Warning')} type="text" placeholder="opensource-ny/OpenSource-NY" value={this.state.repo} onChange={this.handleDataChange.bind(this)}></input>
-          <input type="submit" disabled={!this.state.dataValid} onClick={this.handleDataSubmit.bind(this)}></input>
+          <input className={(this.state.repoValid ? '' : 'Warning')} type="text" placeholder="opensource-ny/OpenSource-NY" value={this.state.repo} onChange={this.handleRepoChange.bind(this)}></input>
+          <input type="submit" disabled={!this.state.repoValid} onClick={this.handleRepoSubmit.bind(this)}></input>
         
           {this.state.loading ? <h2>loading</h2> : ''}
-            {
+          {
+            // if map (contain info about pr) is empty, have it output some message about it
+            /* if(this.state.githubPRsInfo.length !== 0) {
               this.state.githubPRsInfo.map( githubPRsInfo => (
                 <div key={githubPRsInfo.id}>
                   <h3><a href={githubPRsInfo.url}>{githubPRsInfo.id}</a></h3>
                   <p>{githubPRsInfo.title}</p>
                 </div>
               ))
-            }
+            } */
+            
+          }
+          {this.reportPRList()}
 
         </div>
 

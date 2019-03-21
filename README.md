@@ -22,24 +22,21 @@ sudo apt-get install postgresql postgresql-contrib
 
 
 # How to run
-  1. Install the dependency:
 
-  * [npm](#Dependency)
-
-  2. In one terminal, run this to get the server running (only need to do npm install on your first time, to install all the node_modules):
+  1. In one terminal, run this to get the server running (only need to do npm install on your first time, to install all the node_modules):
   ```bash
   cd src/myapp/server
   npm install   
   npm start
   ```
-  3. In a second terminal, run this to get the front end running (only need to do npm install on your first time, to install all the node_modules):
+  2. In a second terminal, run this to get the front end running (only need to do npm install on your first time, to install all the node_modules):
   ```bash
   cd src/myapp/client
   npm install
   npm start
   ```
 
-  4. Now go to your browser and open http://localhost:3000/
+  3. Now go to your browser and open http://localhost:3000/
     Voila!
 
   *NOTE*: When npm start on REACT, you maybe run into this error:

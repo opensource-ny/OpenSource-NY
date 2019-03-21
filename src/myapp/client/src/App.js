@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import HeaderImg from './Header'
+import HeaderImg from './Components/Header'
 
 class App extends Component {
   state = {

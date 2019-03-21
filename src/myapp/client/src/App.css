@@ -8,7 +8,7 @@
 }
 
 .header {
-  background:url("../stars.png");
+  background:url("./img/stars.png");
   height: 200px;
   display: flex;
   flex-direction: column;

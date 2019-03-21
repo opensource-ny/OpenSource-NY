@@ -6,9 +6,19 @@ class App extends Component {
   state = {
     data: null,
     repoName: '',       // Expects this form: 'Github_user_name/repo_name' without the quotes
-    dataValid: false,
+    error: null,
     loading: false,
-    githubPRsInfo: []
+    githubPRsData: []
+  }
+
+  resetState() {
+    this.setState({
+      data: null,
+      repoName: '',       
+      error: null,
+      loading: false,
+      githubPRsData: []
+    })
   }
 
   componentDidMount() {
@@ -16,7 +26,7 @@ class App extends Component {
     this.callBackendAPI()
       .then( res => { 
         this.setState({data: res.express},
-        console.log("This ran")
+        //console.log("This ran")
       )})
       .catch( err => console.log(err) );
   }
@@ -26,7 +36,7 @@ class App extends Component {
     const response = await fetch('/express_backend');
     const body = await response.json();
 
-    console.log("calling back end happened");
+    //console.log("calling back end happened");
     if( response.status !== 200 ) {
       throw Error(body.message)
     }
@@ -34,39 +44,68 @@ class App extends Component {
     return body;
   }
 
-  handleDataChange(event) {
-    //Validation, passes if it's this form: 'Github_user_name/repo_name' without the quotes
+  handleRepoChange(event) {
+    this.resetState();
+    // Validation, passes if it's this form: 'Github_user_name/repo_name' without the quotes
+    // Validation, checks if repo is accessible
     const value = event.target.value;
-    if( !value.includes('/') ) {      // must also check that it only has one instance of it
-      console.log(value);
+    //if( !value.includes('/') ) {      // must also check that it only has one instance of it
+    if( (value.split("/").length - 1) === 1 ) { 
+      //console.log(value);
       this.setState({
         repoName: value,
-        dataValid: false
+        error: null
       });
-    } else {
-      this.setState({
-        repoName: value,
-        dataValid: true
-      });
+    } else {  /* invalid pathname */
+      try{
+        throw new Error('Invalid repo name');
+      } 
+      catch(error) {
+        this.setState({
+          repoName: '',
+          error: error
+        });
+      };
+      
     }
     
   }
 
-  handleDataSubmit() {// if repo dones't exist?
-    console.log(this.state.repoName);
+  handleRepoSubmit() {// if repo dones't exist?
+    //console.log(this.state.repoName);
 
     this.setState({ loading: true });
 
-    const pulls = fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(res => {
-      return res.json();
-    }).then( pulls => {
+    fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(response => {
+      if(response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`Cannot find any data on repo ${this.state.repoName}`);
+      }
+    }).then(pullData => {
       //console.log(pulls);
       this.setState({ 
-        githubPRsInfo: pulls,
+        githubPRsData: pullData,
         loading: false
       })
-    } );
+    }).catch(error => {
+      this.setState({
+        error: error,
+        loading: false
+      })
+    });
 
+  }
+
+  reportPRList() {
+    return(
+        this.state.githubPRsData.map( githubPRsData => (
+          <div key={githubPRsData.id}>
+            <h3><a href={githubPRsData.url}>{githubPRsData.id}</a></h3>
+            <p>{githubPRsData.title}</p>
+          </div>
+        ))
+    );
   }
 
   render() {
@@ -77,18 +116,12 @@ class App extends Component {
         <p className="App-intro">Something here:{this.state.data}</p>
 
         <div className="PRs">
-          <input className={(this.state.dataValid ? '' : 'Warning')} type="text" placeholder="opensource-ny/OpenSource-NY" value={this.state.repo} onChange={this.handleDataChange.bind(this)}></input>
-          <input type="submit" disabled={!this.state.dataValid} onClick={this.handleDataSubmit.bind(this)}></input>
+          <input className={(this.state.error ? '' : 'Warning')} type="text" placeholder="opensource-ny/OpenSource-NY" onChange={this.handleRepoChange.bind(this)}></input>
+          <input type="submit" disabled={this.state.error} onClick={this.handleRepoSubmit.bind(this)}></input>
         
-          {this.state.loading ? <h2>loading</h2> : ''}
-            {
-              this.state.githubPRsInfo.map( githubPRsInfo => (
-                <div key={githubPRsInfo.id}>
-                  <h3><a href={githubPRsInfo.url}>{githubPRsInfo.id}</a></h3>
-                  <p>{githubPRsInfo.title}</p>
-                </div>
-              ))
-            }
+          {this.state.loading ? <h2>loading ...</h2> : ''}
+          {this.state.error ? <h2>{this.state.error.message}</h2> : ''}
+          {this.reportPRList()}
 
         </div>
 

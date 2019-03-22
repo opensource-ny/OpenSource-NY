@@ -26,7 +26,6 @@ class App extends Component {
     this.callBackendAPI()
       .then( res => { 
         this.setState({data: res.express},
-        //console.log("This ran")
       )})
       .catch( err => console.log(err) );
   }
@@ -36,7 +35,6 @@ class App extends Component {
     const response = await fetch('/express_backend');
     const body = await response.json();
 
-    //console.log("calling back end happened");
     if( response.status !== 200 ) {
       throw Error(body.message)
     }
@@ -46,12 +44,9 @@ class App extends Component {
 
   handleRepoChange(event) {
     this.resetState();
-    // Validation, passes if it's this form: 'Github_user_name/repo_name' without the quotes
-    // Validation, checks if repo is accessible
     const value = event.target.value;
-    //if( !value.includes('/') ) {      // must also check that it only has one instance of it
+
     if( (value.split("/").length - 1) === 1 ) { 
-      //console.log(value);
       this.setState({
         repoName: value,
         error: null
@@ -71,19 +66,16 @@ class App extends Component {
     
   }
 
-  handleRepoSubmit() {// if repo dones't exist?
-    //console.log(this.state.repoName);
-
+  handleRepoSubmit() {
     this.setState({ loading: true });
 
     fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(response => {
       if(response.ok) {
-        return response.json();
+        return response.json();   // This object if an json which contain an array of PR in json format.
       } else {
         throw new Error(`Cannot find any data on repo ${this.state.repoName}`);
       }
-    }).then(pullData => {
-      //console.log(pulls);
+    }).then(pullData => {    // Does the first return from fetch gets transfered to this function? Because of the then? It does!
       this.setState({ 
         githubPRsData: pullData,
         loading: false
@@ -97,15 +89,56 @@ class App extends Component {
 
   }
 
+  /* 
+   * reports a list of PR
+   */
   reportPRList() {
     return(
-        this.state.githubPRsData.map( githubPRsData => (
-          <div key={githubPRsData.id}>
-            <h3><a href={githubPRsData.url}>{githubPRsData.id}</a></h3>
-            <p>{githubPRsData.title}</p>
+        this.state.githubPRsData.map( eachElement => (
+          <div key={eachElement.id}>
+            <h3><a href={eachElement.url}>{eachElement.id}</a></h3>
+            <p>{eachElement.title}</p>
+            <p>----------------------------</p>
           </div>
         ))
     );
+  }
+
+  /* 
+   * @arg eachElement should be a json object.
+   * meant to be used by reportPRListDetailed's returning html stuff
+   */
+  reportMergeStatue( eachElement ) {
+    if(eachElement.state === 'open') {
+      return('Open');
+    }
+
+    if(eachElement.merged_at === null) {
+      return('Rejected...');
+    } else {
+      return('Merged!');
+    }
+  }
+
+  /* 
+   * reports a list of PR and their merge status
+   */
+  reportPRListDetailed() {
+    var githubPRsDataDetailed;
+
+    githubPRsDataDetailed = this.state.githubPRsData.map(
+      eachElement => (
+          <div key={eachElement.id}>
+            <h3><a href={eachElement.url}> {eachElement.id} </a></h3>
+            <p> {eachElement.title} </p>
+            <p> By: {eachElement.user.login} </p>
+            <p> Merged status: { this.reportMergeStatue(eachElement) } </p>
+            <p>----------------------------</p>
+          </div>
+      )
+    );
+
+    return githubPRsDataDetailed;
   }
 
   render() {
@@ -116,12 +149,12 @@ class App extends Component {
         <p className="App-intro">Something here:{this.state.data}</p>
 
         <div className="PRs">
-          <input className={(this.state.error ? '' : 'Warning')} type="text" placeholder="opensource-ny/OpenSource-NY" onChange={this.handleRepoChange.bind(this)}></input>
-          <input type="submit" disabled={this.state.error} onClick={this.handleRepoSubmit.bind(this)}></input>
+          <input className={(this.state.error ? 'Warning' : '')} type="text" placeholder="opensource-ny/OpenSource-NY" onChange={this.handleRepoChange.bind(this)}></input>
+          <input type="submit" disabled={this.state.error} onClick={this.handleRepoSubmit.bind(this)}></input>  {/* Also make it on enter key */}
         
           {this.state.loading ? <h2>loading ...</h2> : ''}
           {this.state.error ? <h2>{this.state.error.message}</h2> : ''}
-          {this.reportPRList()}
+          {this.reportPRListDetailed()}
 
         </div>
 

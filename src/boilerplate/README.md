@@ -1,11 +1,14 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Team.me
-## Team up with people before the event even begins!
+# OpenSource-NY
 
 ## Installation
 
-To download, do `git clone https://github.com/PsyCas/Team.me`.
+To download, do `git clone https://github.com/opensource-ny/OpenSource-NY.git`.
+**Pre-requisits**
+- [nodejs](https://nodejs.org/en/)
+- concurrently (`npm i -g concurrently`)
+- nodemon (`npm i -g nodemon`)
 
 ### Main folder
 

@@ -1,0 +1,47 @@
+.App {
+  text-align: center;
+}
+
+.App-intro{
+  font-family:Garamond, Georgia, serif;
+  font-weight: bold;
+}
+
+.header {
+  background:url("../stars.png");
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-family: Garamond, Georgia, serif;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color:whitesmoke;
+  opacity:0.85;
+}
+
+.login {
+  font-family: Garamond, Georgia, serif;
+}
+
+.PullContainer {
+  background-color: lightgrey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  max-width: 40%;
+  -webkit-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
+  -moz-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
+  box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
+  padding: 0.5em;
+  margin: 0 auto; 
+  /* this margin is temporary until we set up a better container */
+  /* overflow: scroll; */
+}
+
+/* opensource-ny/opensource-ny */

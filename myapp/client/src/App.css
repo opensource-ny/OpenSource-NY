@@ -27,3 +27,7 @@
 .login {
   font-family: Garamond, Georgia, serif;
 }
+
+.Warning {
+  color: red;
+}

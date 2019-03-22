@@ -109,6 +109,10 @@ class App extends Component {
    * meant to be used by reportPRListDetailed's returning html stuff
    */
   reportMergeStatue( eachElement ) {
+    if(eachElement.state === 'open') {
+      return('Open');
+    }
+
     if(eachElement.merged_at === null) {
       return('Rejected...');
     } else {

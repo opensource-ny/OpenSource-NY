@@ -136,6 +136,12 @@ class App extends Component {
     return githubPRsDataDetailed;
   }
 
+  handleKeyPress(e) {
+    if(e.key === 'Enter') {
+      this.handleRepoSubmit();
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -144,7 +150,7 @@ class App extends Component {
         <p className="App-intro">Something here:{this.state.data}</p>
 
         <div className="PRs">
-          <input className={(this.state.error ? 'Warning' : '')} type="text" placeholder="opensource-ny/OpenSource-NY" onChange={this.handleRepoChange.bind(this)}></input>
+          <input className={(this.state.error ? 'Warning' : '')} type="text" placeholder="opensource-ny/OpenSource-NY" onChange={this.handleRepoChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}></input>
           <input type="submit" disabled={this.state.error} onClick={this.handleRepoSubmit.bind(this)}></input>  {/* Also make it on enter key */}
         
           {this.state.loading ? <h2>loading ...</h2> : ''}

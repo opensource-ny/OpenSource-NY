@@ -43,7 +43,6 @@ class App extends Component {
   }
 
   handleRepoChange(event) {
-    this.resetState();
     const value = event.target.value;
 
     if( (value.split("/").length - 1) === 1 ) { 

@@ -39,17 +39,27 @@
   ```
 
   Step 4-10 (Assumes origin is tracking your fork and upstream is tracking main repo)
+  
   ```shell
-  git pull -p upstream master
+  git pull upstream master
   git branch feature-branch
   git checkout feature-branch
+  
   ...do your edits and test...
-  git pull upstream feature-branch
+  
+  git add .
+  git commit -m "Message Here"
   git push origin feature-branch
-  ...make your Pull Request from your fork remote feature branch. Then after your PR is successful...
   git checkout master
+  git pull upstream master
+  git push origin master
+  
+  ...make your Pull Request from your fork remote feature branch. Then after your PR is successful...
+  
+  git checkout master
+  git pull upstream master
   git branch -d feature-branch
-  git pull -p upstream master
+  git push -d origin feature-branch
   git push origin master
   ```
 

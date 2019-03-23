@@ -43,7 +43,6 @@ class App extends Component {
   }
 
   handleRepoChange(event) {
-    this.resetState();
     const value = event.target.value;
 
     if( (value.split("/").length - 1) === 1 ) { 
@@ -109,10 +108,6 @@ class App extends Component {
    * meant to be used by reportPRListDetailed's returning html stuff
    */
   reportMergeStatue( eachElement ) {
-    if(eachElement.state === 'open') {
-      return('Open');
-    }
-
     if(eachElement.merged_at === null) {
       return('Rejected...');
     } else {
@@ -141,6 +136,12 @@ class App extends Component {
     return githubPRsDataDetailed;
   }
 
+  handleKeyPress(e) {
+    if(e.key === 'Enter') {
+      this.handleRepoSubmit();
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -149,7 +150,7 @@ class App extends Component {
         <p className="App-intro">Something here:{this.state.data}</p>
 
         <div className="PRs">
-          <input className={(this.state.error ? 'Warning' : '')} type="text" placeholder="opensource-ny/OpenSource-NY" onChange={this.handleRepoChange.bind(this)}></input>
+          <input className={(this.state.error ? 'Warning' : '')} type="text" placeholder="opensource-ny/OpenSource-NY" onChange={this.handleRepoChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}></input>
           <input type="submit" disabled={this.state.error} onClick={this.handleRepoSubmit.bind(this)}></input>  {/* Also make it on enter key */}
         
           {this.state.loading ? <h2>loading ...</h2> : ''}

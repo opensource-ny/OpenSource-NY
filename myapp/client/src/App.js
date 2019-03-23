@@ -88,12 +88,39 @@ class App extends Component {
 
   }
 
-  /* 
-   * reports a list of PR
+  /* parse an array of json objects describing PR from github based on a condition
+   * returns an array of json objects based on condition
    */
-  reportPRList() {
+  parseGithubPRJson( githubPRJsonSet, condition, key ) {
+    var parsedPRSet = [];
+
+    if( condition === 'byName' ) {
+      parsedPRSet = githubPRJsonSet.filter( eachElement => (
+        eachElement.user.login === key
+      ));
+    }
+
+    return parsedPRSet;
+  }
+
+  /* 
+   * reports a list of PR base on the input array of github PR json objects
+   */
+  reportPRList( dataPR ) {
+    if( dataPR === undefined ) {
+      return(
+        <div><h3>Array was undefined</h3></div>
+      );
+    }
+
+    if( dataPR.length === 0 ) {
+      return(
+        <div><h3>Found no data</h3></div>
+      );
+    }
+
     return(
-        this.state.githubPRsData.map( eachElement => (
+        dataPR.map( eachElement => (
           <div key={eachElement.id}>
             <h3><a href={eachElement.url}>{eachElement.id}</a></h3>
             <p>{eachElement.title}</p>
@@ -120,12 +147,24 @@ class App extends Component {
   }
 
   /* 
-   * reports a list of PR and their merge status
+   * reports a list of PR and their merge status base on the input array of github PR json objects
    */
-  reportPRListDetailed() {
+  reportPRListDetailed( dataPR ) {
+    if( dataPR === undefined ) {
+      return(
+        <div><h3>Array was undefined</h3></div>
+      );
+    }
+
+    if( dataPR.length === 0 ) {
+      return(
+        <div><h3>Found no data</h3></div>
+      );
+    }
+
     var githubPRsDataDetailed;
 
-    githubPRsDataDetailed = this.state.githubPRsData.map(
+    githubPRsDataDetailed = dataPR.map(
       eachElement => (
           <div key={eachElement.id}>
             <h3><a href={eachElement.url}> {eachElement.id} </a></h3>
@@ -156,10 +195,13 @@ class App extends Component {
         <div className="PRs">
           <input className={(this.state.error ? 'Warning' : '')} type="text" placeholder="opensource-ny/OpenSource-NY" onChange={this.handleRepoChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}></input>
           <input type="submit" disabled={this.state.error} onClick={this.handleRepoSubmit.bind(this)}></input>  {/* Also make it on enter key */}
-        
+          
+
           {this.state.loading ? <h2>loading ...</h2> : ''}
           {this.state.error ? <h2>{this.state.error.message}</h2> : ''}
-          {this.reportPRListDetailed()}
+          {/* this.reportPRList(this.state.githubPRsData) */}
+          {/* this.reportPRListDetailed(this.state.githubPRsData) */}
+          {this.reportPRListDetailed( this.parseGithubPRJson(this.state.githubPRsData, 'byName', 'yizongk') )}
 
         </div>
 

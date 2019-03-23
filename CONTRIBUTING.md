@@ -22,11 +22,12 @@
   4. Update your local repo from upstream by doing a pull.
   5. Create feature-branch in your fork.
   6. Edit and test feature-branch in your fork.
-  7. Do a pull from upstream tracker to resolve any merge conflict.
-  8. Push to remote feature branch (in your fork!)
-  9. Make a PR to this repo with that feature-branch from your fork.
-  10. After PR is successful, delete the feature branch, and update your fork remote repo.
-  11. Repeat step 4 to 11.
+  7. Stage and commit all changes. 
+  8. Do a pull from upstream tracker to resolve any merge conflict.
+  9. Push to remote feature branch (in your fork!)
+  10. Make a PR to this repo with that feature-branch from your fork.
+  11. After PR is successful, delete the feature branch, and update your fork remote repo.
+  12. Repeat step 4 to 11.
 
   Here is an example workflow with commands
   
@@ -39,17 +40,29 @@
   ```
 
   Step 4-10 (Assumes origin is tracking your fork and upstream is tracking main repo)
+  
   ```shell
   git pull -p upstream master
   git branch feature-branch
   git checkout feature-branch
+  
   ...do your edits and test...
-  git pull upstream feature-branch
-  git push origin feature-branch
-  ...make your Pull Request from your fork remote feature branch. Then after your PR is successful...
+ ...Stage and Commit changes...
+  
+  
   git checkout master
+  git pull upstream master
+  git push origin master
+  git checkout feature-branch
+  git merge master
+  git push origin feature-branch
+  
+  ...make your Pull Request from your fork remote feature branch. Then after your PR is successful...
+  
+  git checkout master
+  git pull upstream master
   git branch -d feature-branch
-  git pull -p upstream master
+  git push -d origin feature-branch
   git push origin master
   ```
 

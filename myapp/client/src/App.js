@@ -195,7 +195,7 @@ class App extends Component {
         <div className="PRs">
           <input className={(this.state.error ? 'Warning' : '')} type="text" placeholder="opensource-ny/OpenSource-NY" onChange={this.handleRepoChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}></input>
           <input type="submit" disabled={this.state.error} onClick={this.handleRepoSubmit.bind(this)}></input>  {/* Also make it on enter key */}
-          
+          {/* make second submit for name, and if name and repo are entered, filter it. else just do repo. and don't allow submit if only name is filled in */}
 
           {this.state.loading ? <h2>loading ...</h2> : ''}
           {this.state.error ? <h2>{this.state.error.message}</h2> : ''}

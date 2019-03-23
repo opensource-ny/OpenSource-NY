@@ -4,7 +4,8 @@ import '../App.css';
 function Header(){
     return(
         <div className="header">
-            <p className="title">OpenSource NY App</p>
+            <h1 className="title">OpenSource NY App</h1>
+            <p className="welcome">Welcome!</p>
         </div>
     )
 }

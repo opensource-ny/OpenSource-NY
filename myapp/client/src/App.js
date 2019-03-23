@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import HeaderImg from './Components/Header'
+import ToUse from './Components/Summary'
 
 class App extends Component {
   state = {
@@ -149,9 +150,22 @@ class App extends Component {
         {/* Render the newly fetched data insdie of this.state.data */}
         <p className="App-intro">Something here:{this.state.data}</p>
 
+        <ToUse/>
+
         <div className="PRs">
-          <input className={(this.state.error ? 'Warning' : '')} type="text" placeholder="opensource-ny/OpenSource-NY" onChange={this.handleRepoChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}></input>
-          <input type="submit" disabled={this.state.error} onClick={this.handleRepoSubmit.bind(this)}></input>  {/* Also make it on enter key */}
+          <input className={(this.state.error ? 'Warning' : 'inputbox')} 
+            type="text" 
+            placeholder="Enter information here" 
+            onChange={this.handleRepoChange.bind(this)} 
+            onKeyPress={this.handleKeyPress.bind(this)}>
+          </input>
+
+          <input className="submit-query"
+            type="submit" 
+            value="Search"
+            disabled={this.state.error} 
+            onClick={this.handleRepoSubmit.bind(this)}>
+          </input>  {/* Also make it on enter key */}
         
           {this.state.loading ? <h2>loading ...</h2> : ''}
           {this.state.error ? <h2>{this.state.error.message}</h2> : ''}

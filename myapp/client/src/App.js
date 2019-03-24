@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import HeaderImg from './Components/Header'
-import ToUse from './Components/Summary'
+import HeaderSummary from './Components/Summary'
 
 class App extends Component {
   state = {
@@ -13,13 +13,9 @@ class App extends Component {
     githubPRsData: []
   }
 
-  resetState() {
+  resetFetchData() {
     this.setState({
       data: null,
-      repoName: '',
-      githubUserName: '',       
-      error: null,
-      loading: false,
       githubPRsData: []
     })
   }
@@ -80,6 +76,7 @@ class App extends Component {
   }
 
   handleRepoSubmit() {
+    this.resetFetchData();
     this.setState({ loading: true });
 
     fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(response => {
@@ -104,9 +101,15 @@ class App extends Component {
 
   /* parse an array of json objects describing PR from github based on a condition
    * returns an array of json objects based on condition
+   * returns the exact array as original if none of the condition matches
+   * if key is undefined or null or empty string, return the original array as it is
    */
   parseGithubPRJson( githubPRJsonSet, condition, key ) {
     var parsedPRSet = [];
+
+    if( key === undefined || key === null || key === '' ) {
+      return githubPRJsonSet;
+    }
 
     if( condition === 'byName' ) {
       parsedPRSet = githubPRJsonSet.filter( eachElement => (
@@ -206,13 +209,21 @@ class App extends Component {
         {/* Render the newly fetched data insdie of this.state.data */}
         <p className="App-intro">Something here:{this.state.data}</p>
 
-        <ToUse/>
+        <HeaderSummary/>
 
         <div className="PRs">
           <input className={(this.state.error ? 'Warning' : 'inputbox')} 
             name="repoName"
             type="text" 
-            placeholder="Enter information here" 
+            placeholder="Enter Github repository name here" 
+            onChange={this.handleInputChange.bind(this)} 
+            onKeyPress={this.handleKeyPress.bind(this)}>
+          </input>
+
+          <input className={(this.state.error ? 'Warning' : 'inputbox')} 
+            name="githubUserName"
+            type="text" 
+            placeholder="Enter Github username here" 
             onChange={this.handleInputChange.bind(this)} 
             onKeyPress={this.handleKeyPress.bind(this)}>
           </input>
@@ -231,7 +242,7 @@ class App extends Component {
           {this.state.error ? <h2>{this.state.error.message}</h2> : ''}
           {/* this.reportPRList(this.state.githubPRsData) */}
           {/* this.reportPRListDetailed(this.state.githubPRsData) */}
-          {this.reportPRListDetailed( this.parseGithubPRJson(this.state.githubPRsData, 'byName', 'yizongk') )}
+          {this.reportPRListDetailed( this.parseGithubPRJson(this.state.githubPRsData, 'byName', this.state.githubUserName) )}
 
         </div>
 

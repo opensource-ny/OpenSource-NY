@@ -19,6 +19,11 @@ function Opening(){
                 <strong>Example:</strong> opensource-ny/OpenSource-NY
             </p>
 
+            <p className="instructions">
+                Optional: Enter a Github username for Pull Requests maded by the specified username
+                if username doesn't exists, the outputs will be as if the username wasn't entered.
+            </p>
+
         </div>
     )
 }

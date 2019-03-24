@@ -235,13 +235,9 @@ class App extends Component {
             onClick={this.handleRepoSubmit.bind(this)}>
           </input> 
 
-          {/* make second submit for name, and if name and repo are entered, filter it. else just do repo. and don't allow submit if only name is filled in */}
-
-        
           {this.state.loading ? <h2>loading ...</h2> : ''}
           {this.state.error ? <h2>{this.state.error.message}</h2> : ''}
-          {/* this.reportPRList(this.state.githubPRsData) */}
-          {/* this.reportPRListDetailed(this.state.githubPRsData) */}
+          {/* In the future, should only update output when submit button is hit or enter key is hit on input field. As of right now it constantly updates, which may not be good for us. */}
           {this.reportPRListDetailed( this.parseGithubPRJson(this.state.githubPRsData, 'byName', this.state.githubUserName) )}
 
         </div>

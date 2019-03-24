@@ -68,6 +68,17 @@ class App extends Component {
     
   }
 
+  handleInputChange(event) {
+    if( event.target.name === 'repoName' ) {
+      this.handleRepoChange(event);
+      return;
+    }
+
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
   handleRepoSubmit() {
     this.setState({ loading: true });
 
@@ -199,9 +210,10 @@ class App extends Component {
 
         <div className="PRs">
           <input className={(this.state.error ? 'Warning' : 'inputbox')} 
+            name="repoName"
             type="text" 
             placeholder="Enter information here" 
-            onChange={this.handleRepoChange.bind(this)} 
+            onChange={this.handleInputChange.bind(this)} 
             onKeyPress={this.handleKeyPress.bind(this)}>
           </input>
 

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color:#dee5e9;
 }
 
 .App-intro{
@@ -9,7 +10,7 @@
 
 .header {
   background:url("./img/stars.png");
-  height: 200px;
+  height: 175px;
   display: flex;
   flex-direction: column;
 }
@@ -24,10 +25,48 @@
   opacity:0.85;
 }
 
-.login {
+.welcome {
   font-family: Garamond, Georgia, serif;
+  font-size: 36px;
+  font-weight: bold;
+  color: lightgoldenrodyellow;
+  opacity: 0.85;
+  margin:-4px 0 20px 0px;
+}
+
+.instructions {
+  font-family: Garamond, Georgia, serif;
+  font-size: 18px;
+}
+
+.inputbox {
+  border: 2px solid black;
+  border-radius: 4px;
+  width: 35%;
+  height: 25px;
 }
 
 .Warning {
+  border: 2px solid black;
+  border-radius: 4px;
+  width: 35%;
+  height: 25px;
+}
+
+.inputbox:focus {
+  border: 2px solid green;
+}
+
+.Warning:focus {
+  border: 2px solid red;
   color: red;
+}
+
+.submit-query {
+  background-color: lightyellow;
+  border-radius: 4px;
+  padding: 7px 15px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
 }

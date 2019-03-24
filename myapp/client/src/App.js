@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import HeaderImg from './Components/Header'
+import ToUse from './Components/Summary'
 
 class App extends Component {
   state = {
     data: null,
     repoName: '',       // Expects this form: 'Github_user_name/repo_name' without the quotes
+    githubUserName: '',
     error: null,
     loading: false,
     githubPRsData: []
@@ -14,7 +16,8 @@ class App extends Component {
   resetState() {
     this.setState({
       data: null,
-      repoName: '',       
+      repoName: '',
+      githubUserName: '',       
       error: null,
       loading: false,
       githubPRsData: []
@@ -138,7 +141,7 @@ class App extends Component {
     if(eachElement.state === 'open') {
       return('Open');
     }
-
+    
     if(eachElement.merged_at === null) {
       return('Rejected...');
     } else {
@@ -192,11 +195,26 @@ class App extends Component {
         {/* Render the newly fetched data insdie of this.state.data */}
         <p className="App-intro">Something here:{this.state.data}</p>
 
+        <ToUse/>
+
         <div className="PRs">
-          <input className={(this.state.error ? 'Warning' : '')} type="text" placeholder="opensource-ny/OpenSource-NY" onChange={this.handleRepoChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}></input>
-          <input type="submit" disabled={this.state.error} onClick={this.handleRepoSubmit.bind(this)}></input>  {/* Also make it on enter key */}
+          <input className={(this.state.error ? 'Warning' : 'inputbox')} 
+            type="text" 
+            placeholder="Enter information here" 
+            onChange={this.handleRepoChange.bind(this)} 
+            onKeyPress={this.handleKeyPress.bind(this)}>
+          </input>
+
+          <input className="submit-query"
+            type="submit" 
+            value="Search"
+            disabled={this.state.error} 
+            onClick={this.handleRepoSubmit.bind(this)}>
+          </input> 
+
           {/* make second submit for name, and if name and repo are entered, filter it. else just do repo. and don't allow submit if only name is filled in */}
 
+        
           {this.state.loading ? <h2>loading ...</h2> : ''}
           {this.state.error ? <h2>{this.state.error.message}</h2> : ''}
           {/* this.reportPRList(this.state.githubPRsData) */}

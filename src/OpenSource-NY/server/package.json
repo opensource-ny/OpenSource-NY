@@ -17,8 +17,7 @@
     "passport-local": "^1.0.0",
     "pg": "^7.3.0",
     "pg-monitor": "^0.8.3",
-    "pg-promise": "^7.0.3",
-    "sequelize": "^4.42.0"
+    "pg-promise": "^7.0.3"
   },
   "devDependencies": {
     "nodemon": "^1.12.1"

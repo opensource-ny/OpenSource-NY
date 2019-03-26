@@ -1,5 +1,4 @@
 import React, {Component} from "react"
-import PullRequest from './PullRequest'
 import PRdisplay from './PRdisplay'
 import '../Styles/App.css';
 

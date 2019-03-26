@@ -1,6 +1,6 @@
 import React, {Component} from "react"
 import PullRequest from './PullRequest'
-import '../Styles/App.css';
+import '../Styles/PRdisplay.css';
 
 class PRdisplay extends Component {
 
@@ -11,7 +11,8 @@ class PRdisplay extends Component {
       repoName: '',       // Expects this form: 'Github_user_name/repo_name' without the quotes
       dataValid: false,
       loading: false,
-      githubPRsInfo: []
+      githubPRsInfo: [],
+      error: "",
     }
 
     this.handleDataChange = this.handleDataChange.bind(this)
@@ -30,18 +31,19 @@ class PRdisplay extends Component {
     return body;
   }
 
-  handleDataChange(event) {
+  handleDataChange(event) { // opensource-ny/OpenSource-NY
     //Validation, passes if it's this form: 'Github_user_name/repo_name' without the quotes
-    const value = event.target.value;
+    let value = event.target.value;
+    let better_value = value.replace(/ /g, '')
     if( !value.includes('/') ) {      // must also check that it only has one instance of it
-      console.log(value);
+      console.log(better_value);
       this.setState({
-        repoName: value,
+        repoName: better_value,
         dataValid: false
       });
     } else {
       this.setState({
-        repoName: value,
+        repoName: better_value,
         dataValid: true
       });
     }
@@ -50,40 +52,66 @@ class PRdisplay extends Component {
 
   handleDataSubmit(){ // if repo dones't exist?
     console.log(this.state.repoName);
-
-    this.setState({ loading: true });
+    let repository = this.state.repoName.replace(/ /g, "")
+    this.setState({
+        repoName: repository,
+        loading: true
+    })
 
     const pulls = fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(res => {
       return res.json();
     }).then( pulls => {
       //console.log(pulls);
-      this.setState({ 
-        githubPRsInfo: pulls,
-        loading: false
+      if(pulls.message === "Not Found"){
+        this.setState({
+          error: pulls.message,
+          loading: false,
+        })
+      } else {
+        this.setState({ 
+          githubPRsInfo: pulls,
+          loading: false
+        })
+      }
+    })
+    .catch((error) => {
+      this.setState({
+        error: error
       })
-    } );
+    })
 
   }
 
   handleKeyPress(e) {
-    if(e.key === 'Enter') {
+    if(e.key === 'Enter' && this.state.dataValid) {
       this.handleDataSubmit();
     }
   }
 
   render(){
+    let content
+    if(this.state.error === ""){
+      console.log(this.state.githubPRsInfo)
+      content = this.state.githubPRsInfo.map((githubPRsInfo) => (
+          <PullRequest key={githubPRsInfo.id} content={githubPRsInfo}/>
+        )
+      )
+    } else {
+      content = <div>
+        Error: {this.state.repoName} is invalid repository name.
+      </div>
+    }
+
     return(
         <div className="PRs">
           <div className="PullContainer">
-            <input className={(this.state.dataValid ? '' : 'Warning')} type="text" placeholder="opensource-ny/OpenSource-NY" value={this.state.repo} onChange={this.handleDataChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}></input>
-            <input type="submit" disabled={!this.state.dataValid} onClick={this.handleDataSubmit.bind(this)}></input>
-            {this.state.loading ? <h2>loading</h2> : ''}
-            {
-              this.state.githubPRsInfo.map( githubPRsInfo => (
-                  <PullRequest key={githubPRsInfo.id} content={githubPRsInfo}/>
-                )
-              )
-            }
+            <div className="inputBox">
+                <input className={(this.state.dataValid ? 'good' : 'warning')} type="text" placeholder="opensource-ny/OpenSource-NY" value={this.state.repo} onChange={this.handleDataChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}></input>
+                <input className="submitBtn" type="submit" disabled={!this.state.dataValid} onClick={this.handleDataSubmit.bind(this)}></input>
+            </div>
+            <hr />
+            {this.state.loading ? <h2>loading</h2> : <div></div>}
+            {content}
           </div>
         </div>
     )

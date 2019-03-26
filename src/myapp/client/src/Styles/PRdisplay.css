@@ -1,0 +1,65 @@
+.PullContainer {
+    background-color: lightgrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    max-width: 40%;
+    -webkit-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
+    padding: 0.5em;
+    margin: 0 auto; 
+    /* this margin is temporary until we set up a better container */
+    /* overflow: scroll; */
+  }
+
+.warning {
+    /* background-color: lightcoral; */
+    border-style: none;
+    border: 1.5px solid #FE5F00;
+    color: black;
+}
+
+.good {
+    border-style: none;
+    border: 1.5px solid #73AD00;
+    color: black;
+}
+
+.warning, .good {
+    font-size: 1.5em;
+    font-weight: 400;
+    /* height: 1.6em; */
+    width: 100%;
+    border-radius: 15px;
+    padding: 0.2em;
+    margin: 0.2em;
+}
+
+.submitBtn {
+    /* height: 1.6em; */
+    font-size: 1.5em;
+    border-radius: 15px;
+    padding: 0.2em;
+    margin: 0.2em;
+    cursor: pointer;
+    background-color: #73AD00;
+    color: white;
+    border: none;
+    /* text-decoration: none; */
+}
+
+.inputBox {
+    display: flex;
+    flex-flow: row;
+    flex-direction: row;
+    padding: 0.2em;
+    margin: 0;
+    width: 100%;
+    /* border: solid 1px black; */
+    align-items: center;
+    justify-content: center;
+} 
+
+/* opensource-ny/OpenSource-NY */

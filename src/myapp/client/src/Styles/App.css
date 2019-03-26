@@ -7,23 +7,6 @@
   font-weight: bold;
 }
 
-.header {
-  background:url("../stars.png");
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-}
-
-.title {
-  font-family: Garamond, Georgia, serif;
-  font-weight: bold;
-  align-items: center;
-  justify-content: center;
-  font-size: 50px;
-  color:whitesmoke;
-  opacity:0.85;
-}
-
 .login {
   font-family: Garamond, Georgia, serif;
 }

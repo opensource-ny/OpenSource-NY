@@ -64,12 +64,19 @@ class Home extends Component {
     } );
 
   }
+
+  handleKeyPress(e) {
+    if(e.key === 'Enter') {
+      this.handleDataSubmit();
+    }
+  }
+
   render(){
     return(
       <div className="content">
         <div className="PRs">
           <div className="PullContainer">
-            <input className={(this.state.dataValid ? '' : 'Warning')} type="text" placeholder="opensource-ny/OpenSource-NY" value={this.state.repo} onChange={this.handleDataChange.bind(this)}></input>
+            <input className={(this.state.dataValid ? '' : 'Warning')} type="text" placeholder="opensource-ny/OpenSource-NY" value={this.state.repo} onChange={this.handleDataChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}></input>
             <input type="submit" disabled={!this.state.dataValid} onClick={this.handleDataSubmit.bind(this)}></input>
             {this.state.loading ? <h2>loading</h2> : ''}
             {

@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
 import HeaderImg from './Components/Header'
-import ToUse from './Components/Summary'
+import HeaderSummary from './Components/Summary'
 
 class App extends Component {
   state = {
     data: null,
     repoName: '',       // Expects this form: 'Github_user_name/repo_name' without the quotes
+    githubUserName: '',
     error: null,
     loading: false,
     githubPRsData: []
   }
 
-  resetState() {
+  resetFetchData() {
     this.setState({
       data: null,
-      repoName: '',       
-      error: null,
-      loading: false,
       githubPRsData: []
     })
   }
@@ -66,7 +64,19 @@ class App extends Component {
     
   }
 
+  handleInputChange(event) {
+    if( event.target.name === 'repoName' ) {
+      this.handleRepoChange(event);
+      return;
+    }
+
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
   handleRepoSubmit() {
+    this.resetFetchData();
     this.setState({ loading: true });
 
     fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(response => {
@@ -89,12 +99,45 @@ class App extends Component {
 
   }
 
-  /* 
-   * reports a list of PR
+  /* parse an array of json objects describing PR from github based on a condition
+   * returns an array of json objects based on condition
+   * returns the exact array as original if none of the condition matches
+   * if key is undefined or null or empty string, return the original array as it is
    */
-  reportPRList() {
+  parseGithubPRJson( githubPRJsonSet, condition, key ) {
+    var parsedPRSet = [];
+
+    if( key === undefined || key === null || key === '' ) {
+      return githubPRJsonSet;
+    }
+
+    if( condition === 'byName' ) {
+      parsedPRSet = githubPRJsonSet.filter( eachElement => (
+        eachElement.user.login === key
+      ));
+    }
+
+    return parsedPRSet;
+  }
+
+  /* 
+   * reports a list of PR base on the input array of github PR json objects
+   */
+  reportPRList( dataPR ) {
+    if( dataPR === undefined ) {
+      return(
+        <div><h3>Array was undefined</h3></div>
+      );
+    }
+
+    if( dataPR.length === 0 ) {
+      return(
+        <div><h3>Found no data</h3></div>
+      );
+    }
+
     return(
-        this.state.githubPRsData.map( eachElement => (
+        dataPR.map( eachElement => (
           <div key={eachElement.id}>
             <h3><a href={eachElement.url}>{eachElement.id}</a></h3>
             <p>{eachElement.title}</p>
@@ -121,12 +164,24 @@ class App extends Component {
   }
 
   /* 
-   * reports a list of PR and their merge status
+   * reports a list of PR and their merge status base on the input array of github PR json objects
    */
-  reportPRListDetailed() {
+  reportPRListDetailed( dataPR ) {
+    if( dataPR === undefined ) {
+      return(
+        <div><h3>Array was undefined</h3></div>
+      );
+    }
+
+    if( dataPR.length === 0 ) {
+      return(
+        <div><h3>Found no data</h3></div>
+      );
+    }
+
     var githubPRsDataDetailed;
 
-    githubPRsDataDetailed = this.state.githubPRsData.map(
+    githubPRsDataDetailed = dataPR.map(
       eachElement => (
           <div key={eachElement.id}>
             <h3><a href={eachElement.url}> {eachElement.id} </a></h3>
@@ -154,13 +209,22 @@ class App extends Component {
         {/* Render the newly fetched data insdie of this.state.data */}
         <p className="App-intro">Something here:{this.state.data}</p>
 
-        <ToUse/>
+        <HeaderSummary/>
 
         <div className="PRs">
           <input className={(this.state.error ? 'Warning' : 'inputbox')} 
+            name="repoName"
             type="text" 
-            placeholder="Enter information here" 
-            onChange={this.handleRepoChange.bind(this)} 
+            placeholder="Enter Github repository name here" 
+            onChange={this.handleInputChange.bind(this)} 
+            onKeyPress={this.handleKeyPress.bind(this)}>
+          </input>
+
+          <input className={(this.state.error ? 'Warning' : 'inputbox')} 
+            name="githubUserName"
+            type="text" 
+            placeholder="Enter Github username here" 
+            onChange={this.handleInputChange.bind(this)} 
             onKeyPress={this.handleKeyPress.bind(this)}>
           </input>
 
@@ -169,11 +233,12 @@ class App extends Component {
             value="Search"
             disabled={this.state.error} 
             onClick={this.handleRepoSubmit.bind(this)}>
-          </input>  {/* Also make it on enter key */}
-        
+          </input> 
+
           {this.state.loading ? <h2>loading ...</h2> : ''}
           {this.state.error ? <h2>{this.state.error.message}</h2> : ''}
-          {this.reportPRListDetailed()}
+          {/* In the future, should only update output when submit button is hit or enter key is hit on input field. As of right now it constantly updates, which may not be good for us. */}
+          {this.reportPRListDetailed( this.parseGithubPRJson(this.state.githubPRsData, 'byName', this.state.githubUserName) )}
 
         </div>
 

@@ -69,6 +69,7 @@ class PRdisplay extends Component {
         })
       } else {
         this.setState({ 
+          error: "",
           githubPRsInfo: pulls,
           loading: false
         })

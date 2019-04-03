@@ -47,7 +47,7 @@ class PRdisplay extends Component {
   handleRepoChange(event) { // opensource-ny/OpenSource-NY
     //Validation, passes if it's this form: 'Github_user_name/repo_name' without the quotes
     let value = event.target.value;
-    let better_value = value.replace(/ /g, '')
+    let better_value = value.replace(/ /g, '')  // strips white space, but should really remove leading and trailing white spaces
 
     if( (value.split("/").length - 1) === 1 ) {   // Checks for only one instance of '/'
       this.setState({
@@ -75,8 +75,10 @@ class PRdisplay extends Component {
       return;
     }
 
+    let value = event.target.value;               // strips white space, but should really remove leading and trailing white spaces
+    let better_value = value.replace(/ /g, '')
     this.setState({   // For now assumes if input field refers to name == 'githubUserName'
-      [event.target.name]: event.target.value
+      [event.target.name]: better_value
     });
   }
 

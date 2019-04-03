@@ -1,10 +1,26 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Open Source NY
+# OpenSource-NY
 
-**Description**
+## Installation
 
-This application is build to track successful pull requests of people who wish to enroll.
+To download, do `git clone https://github.com/opensource-ny/OpenSource-NY.git`.
+**Pre-requisits**
+- [nodejs](https://nodejs.org/en/)
+- concurrently (`npm i -g concurrently`)
+- nodemon (`npm i -g nodemon`)
+
+### Main folder
+
+In the main folder, run `npm install` or `npm i` in order to install all of the node modules.
+
+### Client
+
+`cd` into the `client` directory. Run `npm install` or `npm i` in order to install all of the node modules.
+
+### Server
+
+`cd` into the `server` directory. Run `npm install` or `npm i` in order to install all of the node modules.
 
 ## Available Scripts
 

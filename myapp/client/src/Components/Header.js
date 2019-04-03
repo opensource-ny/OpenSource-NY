@@ -1,11 +1,10 @@
 import React from "react"
-import '../App.css';
+import '../Styles/Header.css';
 
 function Header(){
     return(
         <div className="header">
-            <h1 className="title">OpenSource NY App</h1>
-            <p className="welcome">Welcome!</p>
+            <p className="title">OpenSource NY App</p>
         </div>
     )
 }

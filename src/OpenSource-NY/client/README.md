@@ -1,11 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Open Source NY
-
-**Description**
-
-This application is build to track successful pull requests of people who wish to enroll.
-
 ## Available Scripts
 
 In the project directory, you can run:

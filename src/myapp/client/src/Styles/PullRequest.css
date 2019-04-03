@@ -1,0 +1,22 @@
+.pullRequest{
+    display: flex;
+    flex-flow: row;
+    /* max-width: 50vw; */
+    width: 98%;
+    background-color: rgb(235, 235, 235);
+    padding: 0.2em;
+    margin: 0.2em;
+    -webkit-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
+}
+
+.prNumber{
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+.prTitle {
+    font-size: 1.5em;
+}
+

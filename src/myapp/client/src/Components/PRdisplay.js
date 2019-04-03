@@ -14,8 +14,6 @@ class PRdisplay extends Component {
       loading: false,
       githubPRsData: [],
     }
-
-    this.handleDataChange = this.handleDataChange.bind(this)
   }
 
   resetFetchData() {
@@ -144,11 +142,7 @@ class PRdisplay extends Component {
 
     return(
         dataPR.map( eachElement => (
-          <div key={eachElement.id}>
-            <h3><a href={eachElement.url}>{eachElement.id}</a></h3>
-            <p>{eachElement.title}</p>
-            <p>----------------------------</p>
-          </div>
+          <PullRequest key={eachElement.id} content={eachElement}/>
         ))
     );
   }
@@ -189,13 +183,7 @@ class PRdisplay extends Component {
 
     githubPRsDataDetailed = dataPR.map(
       eachElement => (
-          <div key={eachElement.id}>
-            <h3><a href={eachElement.url}> {eachElement.id} </a></h3>
-            <p> {eachElement.title} </p>
-            <p> By: {eachElement.user.login} </p>
-            <p> Merged status: { this.reportMergeStatue(eachElement) } </p>
-            <p>----------------------------</p>
-          </div>
+        <PullRequest key={eachElement.id} content={eachElement}/>
       )
     );
 
@@ -209,14 +197,14 @@ class PRdisplay extends Component {
   }
 
   render(){
-    let content
+    let content;
     if(this.state.error === null){
-      console.log(this.state.githubPRsInfo)
-      //this.reportPRListDetailed( this.parseGithubPRJson(this.state.githubPRsData, 'byName', this.state.githubUserName) )
-      content = this.state.githubPRsInfo.map((githubPRsInfo) => (
-          <PullRequest key={githubPRsInfo.id} content={githubPRsInfo}/>
+      console.log(this.state.githubPRsData)
+      content = this.reportPRListDetailed( this.parseGithubPRJson(this.state.githubPRsData, 'byName', this.state.githubUserName) )
+      /* content = this.state.githubPRsData.map((githubPRsData) => (
+          <PullRequest key={githubPRsData.id} content={githubPRsData}/>
         )
-      )
+      ) */
     } else {
       content = <div>
         <h2>{this.state.error.message}</h2>
@@ -229,21 +217,21 @@ class PRdisplay extends Component {
           <div className="PullContainer">
             <div className="inputBox">
 
-                <input className={(this.state.error ? 'warning' : 'inputBox')} 
+                <input className={(this.state.error ? 'warning' : 'good')} 
                   name="repoName"
                   type="text" 
                   placeholder="Enter Github repository name here" 
                   onChange={this.handleInputChange.bind(this)} 
                   onKeyPress={this.handleKeyPress.bind(this)}>
-                </input>
+                </input>                                       {/* how to disable this when this.state.error is not null? */}
 
-                <input className={(this.state.error ? 'warning' : 'inputBox')} 
+                <input className={(this.state.error ? 'warning' : 'good')} 
                   name="githubUserName"
                   type="text" 
                   placeholder="Enter Github username here" 
                   onChange={this.handleInputChange.bind(this)} 
                   onKeyPress={this.handleKeyPress.bind(this)}>
-                </input>
+                </input>                                         {/* how to disable this when this.state.error is not null? */}
 
                 <input className="submitBtn"
                   type="submit" 
@@ -253,12 +241,14 @@ class PRdisplay extends Component {
                 </input> 
 
             </div>
+            
             <hr />
             {/* In the future, should only update output when submit button is hit or enter key is hit on input field. As of right now it constantly updates, which may not be good for us. */}
             {this.state.loading ? <h2>loading</h2> : <div></div>}
             {content}
-          </div>
+
         </div>
+      </div>
     )
   }
 }

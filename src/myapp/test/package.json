@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "test": "jest --detectOpenHandles"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "jest": "^24.5.0",
+    "supertest": "^4.0.0"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "roots": [
+      "./"
+    ]
+  }
+}

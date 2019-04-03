@@ -9,7 +9,8 @@ class PullRequest extends Component{
             PRtitle: this.props.content.title,
             PRlink: this.props.content.url,
             PRstatus: this.props.content.status,
-            PRmerge: this.props.content.merged_at
+            PRmerge: this.props.content.merged_at,
+            PRauthor: this.props.content.user.login
         }
     }
 
@@ -35,6 +36,9 @@ class PullRequest extends Component{
                 {merge_status}
                 <div className="prNumber">
                     <a href={this.state.PRlink}>{this.state.PRnumber}</a>
+                </div>
+                <div className="prAuthor">
+                    by: {this.state.PRauthor}
                 </div>
                 {" "}
                 <div className="prTitle">

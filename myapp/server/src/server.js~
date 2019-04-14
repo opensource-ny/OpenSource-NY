@@ -18,6 +18,9 @@ app.use(cors());
 
 
 
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 console.log("Hello");
 // Let app start listening to port, will output error if anything goes wrong
 const client = new MongoClient(db.uri, { useNewUrlParser: true });

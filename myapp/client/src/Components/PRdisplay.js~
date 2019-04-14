@@ -105,6 +105,9 @@ class PRdisplay extends Component {
                 for(var pos = 0; pos < keyCount; pos++){
                     dataRequired.push( {user : content[pos].user.login, title : content[pos].title, id: content[pos].id, url : content[pos].html_url});
                 }
+                console.log("BEFORE dataRequired");
+                console.log(dataRequired);
+                console.log("AFTER dataRequired");
                 fetch('http://127.0.0.1:5000/dbRoute/addToDB', {
                   method: 'POST',
                   headers: {

@@ -1,11 +1,11 @@
 /* Our front line of communication, clients will access this page first for any requests */
 
 const express        = require('express');
-var cors = require('cors')
+var cors             = require('cors')
 const MongoClient    = require('mongodb').MongoClient;//Used to create database for information to go to, online resource.
 const db             = require('config/db');//Used to link to the config of DataBase
 //var database_router = require.resolve('database_route.js');
-const bodyParser = require('body-parser');
+const bodyParser     = require('body-parser');
 var app = express();
 const port = 5000;
 const response = require('./response.js');
@@ -18,9 +18,6 @@ app.use(cors());
 
 
 
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 console.log("Hello");
 // Let app start listening to port, will output error if anything goes wrong
 const client = new MongoClient(db.uri, { useNewUrlParser: true });

@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import PullRequest from './PullRequest'
+import RankingDisplay from './RankingDisplay.js'
 import '../Styles/PRdisplay.css';
 
 class PRdisplay extends Component {
@@ -93,6 +94,8 @@ class PRdisplay extends Component {
         throw new Error(`Cannot find any data on repo ${this.state.repoName}`);
       }
     }).then(pullData => {    // Does the first return from fetch gets transfered to this function? Because of the then? It does!
+      //RankingDisplay.updateData("updated data yi");
+
       this.setState({ 
         githubPRsData: pullData,
         loading: false
@@ -110,16 +113,26 @@ class PRdisplay extends Component {
    * returns the exact array as original if none of the condition matches
    * if key is undefined or null or empty string, return the original array as it is
    */
-  parseGithubPRJson( githubPRJsonSet, condition, key ) {
+  parseGithubPRJson( githubPRJsonSet = this.githubPRsData, condition, key ) {
     var parsedPRSet = [];
 
     if( key === undefined || key === null || key === '' ) {
       return githubPRJsonSet;
     }
 
+    if( condition === 'byAll' ) {
+      return githubPRJsonSet;
+    }
+
     if( condition === 'byName' ) {
       parsedPRSet = githubPRJsonSet.filter( eachElement => (
         eachElement.user.login === key
+      ));
+    }
+
+    if( condition === 'byMergeStatus' && key === 'merged' ) {
+      parsedPRSet = githubPRJsonSet.filter( eachElement => (
+        eachElement.merged_at !== null
       ));
     }
 
@@ -201,7 +214,7 @@ class PRdisplay extends Component {
   render(){
     let content;
     if(this.state.error === null){
-      console.log(this.state.githubPRsData)
+      /* console.log(this.state.githubPRsData) */
       content = this.reportPRListDetailed( this.parseGithubPRJson(this.state.githubPRsData, 'byName', this.state.githubUserName) )
       /* content = this.state.githubPRsData.map((githubPRsData) => (
           <PullRequest key={githubPRsData.id} content={githubPRsData}/>

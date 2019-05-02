@@ -1,0 +1,15 @@
+.rankingDisplayContainer {
+    background-color: lightgrey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    max-width: 40%;
+    -webkit-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
+    box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
+    padding: 0.5em;
+    margin: 0 auto; 
+    /* this margin is temporary until we set up a better container */
+    /* overflow: scroll; */
+  }

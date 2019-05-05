@@ -15,3 +15,5 @@ app.listen( port, handleListen(console.log, port) );
 app.get('/', response.hello);
 
 app.get( '/express_backend', response.express_backend);
+
+app.get( '/pullrequest/:url', response.pullrequest);

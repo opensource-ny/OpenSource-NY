@@ -86,7 +86,14 @@ class PRdisplay extends Component {
     this.resetFetchData();
     this.setState({ loading: true });
 
-    fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(response => {
+    var url = this.state.repoName;
+   // fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(response => {
+    fetch(`/pullrequest/${this.state.repoName}`, 
+    {
+      method:'GET',
+      header: url
+    })
+    .then(response => {
       if(response.ok) {
         return response.json();   // This object if an json which contain an array of PR in json format.
       } else {

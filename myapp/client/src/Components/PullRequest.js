@@ -3,7 +3,8 @@ import '../Styles/PullRequest.css'
 
 class PullRequest extends Component{
     constructor(props){
-        super(props)
+        super(props);
+
         this.state = {
             PRnumber: this.props.content.id,
             PRtitle: this.props.content.title,

@@ -1,29 +1,30 @@
 import React, {Component} from "react"
-import PRdisplay from './PRdisplay'
-import RankingDisplay from './RankingDisplay'
+import PRdisplay from './PRdisplay.js'
+import ScoreBoard from './ScoreBoard.js'
 import '../Styles/App.css';
 
 class Home extends Component {
 
   constructor(props){
-    super(props)
+    super(props);
+
     this.state = {
-      data: null,
+      error: null,
+      loading: false,
+      githubPRsData: [],
     }
   }
 
-  updateRank() {
-    let contentTruck;
-    contentTruck = PRdisplay.parseGithubPRJson("byAll");
-    console.log(contentTruck);
-    console.log("updateRank ran");
+  updateScoreBoard(githubPRsData) {
+    console.log("updateding scoreboard should have ran");
+    this.setState({ githubPRsData: githubPRsData });
   }
 
   render(){
     return(
       <div className="content">
-        <PRdisplay />
-        <RankingDisplay data="yiyiyi"/>
+        <PRdisplay error={this.state.error} loading={this.state.loading} githubPRsData={this.state.githubPRsData} updateScoreBoard={this.updateScoreBoard.bind(this)} />
+        <ScoreBoard error={this.state.error} loading={this.state.loading} githubPRsData={this.state.githubPRsData} />
       </div>
     )
   }

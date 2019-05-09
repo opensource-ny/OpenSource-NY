@@ -1,19 +1,19 @@
 import React, {Component} from "react"
 import PullRequest from './PullRequest'
-import RankingDisplay from './RankingDisplay.js'
 import '../Styles/PRdisplay.css';
 
 class PRdisplay extends Component {
 
   constructor(props){
-    super(props)
+    super(props);
+
     this.state = {
       data: null,
       repoName: '',       // Expects this form: 'Github_user_name/repo_name' without the quotes
       githubUserName: '',
       error: null,
-      loading: false,
-      githubPRsData: [],
+      loading: this.props.loading,
+      githubPRsData: this.props.githubPRsData,
     }
   }
 
@@ -94,12 +94,12 @@ class PRdisplay extends Component {
         throw new Error(`Cannot find any data on repo ${this.state.repoName}`);
       }
     }).then(pullData => {    // Does the first return from fetch gets transfered to this function? Because of the then? It does!
-      //RankingDisplay.updateData("updated data yi");
-
       this.setState({ 
         githubPRsData: pullData,
         loading: false
-      })
+      });
+
+      this.props.updateScoreBoard(this.state.githubPRsData);
     }).catch(error => {
       this.setState({
         error: error,

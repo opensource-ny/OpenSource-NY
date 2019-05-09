@@ -9,7 +9,7 @@ class PullRequest extends Component{
             PRnumber: this.props.content.id,
             PRtitle: this.props.content.title,
             PRlink: this.props.content.url,
-            PRstatus: this.props.content.status,
+            PRstate: this.props.content.state,
             PRmerge: this.props.content.merged_at,
             PRauthor: this.props.content.user.login
         }
@@ -17,7 +17,7 @@ class PullRequest extends Component{
 
     render(){
         let merge_status
-        if(this.state.PRstatus === "open"){
+        if(this.state.PRstate === "open"){
             merge_status = <div>
                 Open
             </div>

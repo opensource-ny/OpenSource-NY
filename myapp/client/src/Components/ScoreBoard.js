@@ -27,7 +27,6 @@ class ScoreBoard extends Component {
 
         return(
             <div className="scoreBoardContainer">
-                Score board Goes Here!
                 {this.state.loading ? <h2>loading</h2> : <div></div>}
                 {content}
             </div>

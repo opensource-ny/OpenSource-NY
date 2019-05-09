@@ -44,15 +44,10 @@ class Ranks extends Component{
                 eachElement.merged_at !== null
             ));
 
-            /* if( PRJsonSetScratch === undefined || PRJsonSetScratch === null || PRJsonSetScratch.length === 0 ) {
-                console.log("prscrach is undeifned, null or size 0");
-                return formatScoreList;
-            } */
-
             formatScoreList = this.removeDuplicateAndKeepCount(PRJsonSetScratch);
             
             if( formatScoreList === undefined || formatScoreList === null || formatScoreList.length === 0 ) {
-                console.log("prscrach is undeifned, null or size 0");
+                console.log("formatScoreList is undeifned, null or size 0");
                 return formatScoreList;
             }
 

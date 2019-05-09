@@ -16,7 +16,6 @@ class Home extends Component {
   }
 
   updateScoreBoard(githubPRsData) {
-    console.log("updateding scoreboard should have ran");
     this.setState({ githubPRsData: githubPRsData });
   }
 

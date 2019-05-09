@@ -30,16 +30,8 @@ client.connect(err => {
 // Let app start listening to port, will output error if anything goes wrong
 app.listen( port, handleListen(console.log, port) );      
   app.get('/', response.hello);
+  app.post( '/pullrequest', response.pullrequest);
+  app.get( '/commits', response.commits);
+  //app.get( '/pullrequest', response.pullrequestName);
   app.get( '/express_backend', response.express_backend);
-
-
-// Our API and their approtiate functions
-
-<<<<<<< HEAD
-app.get( '/express_backend', response.express_backend);
-
-app.get( '/pullrequest/:url', response.pullrequest);
-=======
-
-
->>>>>>> 893e9156fc027e5dff3ea33db967c9c6142cdd6d
+  

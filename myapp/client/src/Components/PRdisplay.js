@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import PullRequest from './PullRequest'
 import '../Styles/PRdisplay.css';
+import { resolveCname } from "dns";
 
 function typeOf(obj) {
   return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
@@ -72,7 +73,7 @@ class PRdisplay extends Component {
     
   }
 
-  handleInputChange(event){ 
+  handleInputChange(event) { 
   console.log("handleInputChange: " + event.target.name);
     if( event.target.name === 'repoName' ) {
       
@@ -92,27 +93,42 @@ class PRdisplay extends Component {
     this.resetFetchData();
     this.setState({ loading: true });
 
-    var url = this.state.repoName;
+   
+    console.log("REPO OF STATE: " +this.state.repoName);
+    // fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`)
    // fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(response => {
-    fetch(`/pullrequest/${this.state.repoName}`, 
+   /* fetch(`/pullrequest/${this.state.repoName}`, 
     {
-      method:'GET',
-      header: url
-    })
-    .then(response => {
+      method:'GET'
+    }) */
+    fetch(`/pullrequest`,
+    {
+      method:'POST',
+     body: JSON.stringify({
+        repo:this.state.repoName
+      }),
+      headers: {"Content-Type": "application/json"} 
+    }) 
+    .then(response =>{
       if(response.ok) {
+        //console.log("RESPONSE OKAY" + JSON.stringify(response));
+        console.log(response.clone().json());
+      
         var result = response.json().then( objResult => {
             //This logic can be used to post the request to the DB, You could use /dbRoute/db (Params) to see if it already exists in the DB (Probably before the fetch (basically fetch(localhost:5000 ,{ params: { username : b, repository : c}}).then(something)
+           
             if(this.state.githubUserName !== ''){
-               
+               console.log("User has been inserted");
                 let content;
                 var dataRequired = []; 
+                //var arrayObject= Array.from(objResult);
+                
                 content = this.parseGithubPRJson(objResult, 'byName', this.state.githubUserName); 
                 var keyCount  = Object.keys(content).length;
                 for(var pos = 0; pos < keyCount; pos++){
                     dataRequired.push( {user : content[pos].user.login, title : content[pos].title, id: content[pos].id, url : content[pos].html_url});
                 }
-                fetch('http://127.0.0.1:5000/dbRoute/addToDB', {
+                /*fetch('http://127.0.0.1:5000/dbRoute/addToDB', {
                   method: 'POST',
                   headers: {
                     'Accept': 'application/json',
@@ -123,11 +139,11 @@ class PRdisplay extends Component {
 	                "Repository" : this.state.repoName,
 	                "Repos" : JSON.stringify(dataRequired)
                     })
-                })
+                })  */
                 
                 
             }
-            
+           // resolveCname(result);
             return objResult;
          });
             console.log("after" + result);
@@ -141,6 +157,7 @@ class PRdisplay extends Component {
         loading: false
       })
     }).catch(error => {
+      console.log("Error" + error);
       this.setState({
         error: error,
         loading: false
@@ -299,3 +316,16 @@ class PRdisplay extends Component {
 }
 
 export default PRdisplay
+
+//Commits fetch call. 
+/*  fetch(`/commits`,
+    {
+      method:'POST',
+      body: JSON.stringify({
+        username:this.state.githubUserName,
+        repo:this.state.repoName
+      }),
+      headers: {"Content-Type": "application/json"} 
+    }) 
+
+    */

@@ -35,11 +35,5 @@ app.listen( port, handleListen(console.log, port) );
 
 // Our API and their approtiate functions
 
-<<<<<<< HEAD
-app.get( '/express_backend', response.express_backend);
-
-app.get( '/pullrequest/:url', response.pullrequest);
-=======
 
 
->>>>>>> 893e9156fc027e5dff3ea33db967c9c6142cdd6d

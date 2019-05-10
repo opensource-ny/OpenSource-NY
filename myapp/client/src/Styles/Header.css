@@ -1,26 +1,16 @@
 .header {
     background:url("../Images/stars.png");
-    position: relative;
     height: 200px;
     display: flex;
     flex-direction: column;
+  }
+  
+  .title {
+    font-family: Garamond, Georgia, serif;
+    font-weight: bold;
     align-items: center;
     justify-content: center;
-}
-
-.title {
-  position: absolute;
-  font-family: Garamond, Georgia, serif;
-  font-weight: bold;
-  font-size: 56px;
-  color:whitesmoke;
-  z-index: 2;
-}
-
-.header > img {
-  position: relative;
-  height: 185px;
-  width: 185px;
-  opacity: 0.85;
-  z-index: 1;
-}
+    font-size: 50px;
+    color:whitesmoke;
+    opacity:0.85;
+  }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import '../Styles/Ranks.css'
-import RankElement from './RankElement.js'
+import RankElement from './RankElement'
 
 /* the data type of the list that this class will be dealing with is 
  *      var rankCount = {

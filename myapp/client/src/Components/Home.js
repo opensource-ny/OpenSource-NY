@@ -1,6 +1,6 @@
 import React, {Component} from "react"
-import PRdisplay from './PRdisplay.js'
-import ScoreBoard from './ScoreBoard.js'
+import PRdisplay from './PRdisplay'
+import ScoreBoard from './ScoreBoard'
 import '../Styles/App.css';
 
 class Home extends Component {

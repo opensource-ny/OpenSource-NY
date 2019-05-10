@@ -23,7 +23,7 @@ console.log("Hello");
 const client = new MongoClient(db.uri, { useNewUrlParser: true });
 client.connect(err => {
   const collection = client.db("openSourceRepos").collection("openSourceRepos");
-  const { assessmentRoutes, initAssessmentRoutes } = require('./database.js');
+  const { assessmentRoutes, initAssessmentRoutes } = require('database.js');
   initAssessmentRoutes({db : collection});
   if (err) return console.log(err)
    app.use('/dbRoute', assessmentRoutes);

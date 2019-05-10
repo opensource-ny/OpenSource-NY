@@ -17,18 +17,20 @@ class RankElement extends Component {
         return(
             <div className="rankElement">
                 <div className="ranks">
-                    # {this.state.rank}
+                    #{this.state.rank} 
+
                     {this.state.name}
+
                     {this.score}
                 </div>
 
-                <div className="username">
+                {/* <div className="username">
                     {this.state.name}
                 </div>
 
                 <div className="score">
                     {this.score}
-                </div>
+                </div> */}
             </div>
         );
     }

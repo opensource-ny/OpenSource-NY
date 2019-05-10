@@ -58,9 +58,10 @@ module.exports = {
                 res.status(404).send("Error on the github call");
             }
         });
-    }
+    },
 
    /* pullrequestName:(req, res) => {
+    
             console.log(req.params.name);
             console.log(res);
     } */

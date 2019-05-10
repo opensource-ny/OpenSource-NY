@@ -97,7 +97,7 @@ class PRdisplay extends Component {
     console.log("REPO OF STATE: " +this.state.repoName);
     // fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`)
    // fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(response => {
-   /* fetch(`/pullrequest/${this.state.repoName}`, 
+    /*fetch(`/pullrequest/${this.state.repoName}`, 
     {
       method:'GET'
     }) */

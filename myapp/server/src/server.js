@@ -32,6 +32,6 @@ app.listen( port, handleListen(console.log, port) );
   app.get('/', response.hello);
   app.post( '/pullrequest', response.pullrequest);
   app.get( '/commits', response.commits);
-  //app.get( '/pullrequest', response.pullrequestName);
+ // app.get( '/pullrequest/:name', response.pullrequestName);
   app.get( '/express_backend', response.express_backend);
   

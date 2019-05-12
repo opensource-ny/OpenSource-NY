@@ -8,8 +8,9 @@
     -webkit-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
     box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
-    padding: 0.5em;
+    padding: 0.5em;    
     margin: 0 auto; 
+    z-index:2;
     /* this margin is temporary until we set up a better container */
     /* overflow: scroll; */
   }

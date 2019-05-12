@@ -26,12 +26,19 @@ client.connect(err => {
   const { assessmentRoutes, initAssessmentRoutes } = require('./database.js'); //Initalizer to allow the database to be connect in express 4.x
   initAssessmentRoutes({db : collection});//Assign database and collection
   if (err) return console.log(err)
-   app.use('/dbRoute', assessmentRoutes); //Use routes (Basically, this is a generalize route where if you do dbRoute/(Anything)* it will route it correctly as long as the prefix (dbRoute) exists and the route exists
-});
+   app.use('/dbRoute', assessmentRoutes);
+}); 
+// Let app start listening to port, will output error if anything goes wrong
+
+  
+//app.use('/dbRoute', assessmentRoutes); //Use routes (Basically, this is a generalize route where if you do dbRoute/(Anything)* it will route it correctly as long as the prefix (dbRoute) exists and the route exists
+
 
 app.listen( port, handleListen(console.log, port) );      
   //app.get('/', response.hello);
   //app.get( '/express_backend', response.express_backend);
+  app.post( '/pullrequest', response.pullrequest);
+  app.get( '/commits', response.commits);
 
 
 // Our API and their approtiate functions

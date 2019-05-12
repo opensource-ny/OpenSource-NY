@@ -5,14 +5,15 @@ import '../Styles/PRdisplay.css';
 class PRdisplay extends Component {
 
   constructor(props){
-    super(props)
+    super(props);
+
     this.state = {
       data: null,
       repoName: '',       // Expects this form: 'Github_user_name/repo_name' without the quotes
       githubUserName: '',
       error: null,
-      loading: false,
-      githubPRsData: [],
+      loading: this.props.loading,
+      githubPRsData: this.props.githubPRsData,
     }
   }
 
@@ -96,7 +97,9 @@ class PRdisplay extends Component {
       this.setState({ 
         githubPRsData: pullData,
         loading: false
-      })
+      });
+
+      this.props.updateScoreBoard(this.state.githubPRsData);
     }).catch(error => {
       this.setState({
         error: error,
@@ -110,16 +113,26 @@ class PRdisplay extends Component {
    * returns the exact array as original if none of the condition matches
    * if key is undefined or null or empty string, return the original array as it is
    */
-  parseGithubPRJson( githubPRJsonSet, condition, key ) {
+  parseGithubPRJson( githubPRJsonSet = this.githubPRsData, condition, key ) {
     var parsedPRSet = [];
 
     if( key === undefined || key === null || key === '' ) {
       return githubPRJsonSet;
     }
 
+    if( condition === 'byAll' ) {
+      return githubPRJsonSet;
+    }
+
     if( condition === 'byName' ) {
       parsedPRSet = githubPRJsonSet.filter( eachElement => (
         eachElement.user.login === key
+      ));
+    }
+
+    if( condition === 'byMergeStatus' && key === 'merged' ) {
+      parsedPRSet = githubPRJsonSet.filter( eachElement => (
+        eachElement.merged_at !== null
       ));
     }
 
@@ -201,7 +214,7 @@ class PRdisplay extends Component {
   render(){
     let content;
     if(this.state.error === null){
-      console.log(this.state.githubPRsData)
+      /* console.log(this.state.githubPRsData) */
       content = this.reportPRListDetailed( this.parseGithubPRJson(this.state.githubPRsData, 'byName', this.state.githubUserName) )
       /* content = this.state.githubPRsData.map((githubPRsData) => (
           <PullRequest key={githubPRsData.id} content={githubPRsData}/>

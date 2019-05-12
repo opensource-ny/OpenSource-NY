@@ -3,48 +3,33 @@ var ObjectID = require('mongodb').ObjectID;//Gets mongodb id
 function typeOf(obj) {
   return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
 }
-//const passport = require('passport');
-//require('../config/passport');
-//LocalStrategy = require('passport-local').Strategy; //./database_route.js
-//const Sequelize = require('sequelize');
-//const jwebtoken = require('jsonwebtoken');
-// const jwtSecret = require('../config/jwtConfig')
-const cors = require('cors')
+
+const cors = require('cors') //Future proofing to prevent cross origin issue
 let globalVariable = { db: null };
 
 function initAssessmentRoutes(options) {
     globalVariable = options;
 }    
+//These are used to keep global variable to connect to database.
 
-/*router.get(() => {
-	res.status(404).send("Sorry, can't find that!");
-	res.redirect('/404.html');
-});*/
-
-
-/*router.get('/', function(req, res) {
-    res.send('GET handler for /database_route.');
-});
-
-router.post('/', function(req, res) {
-    res.send('POST handler for /database_route.');
-});*/
 
 module.exports = {
     assessmentRoutes: router,
     initAssessmentRoutes,
 };
 
+//Exporting router and database
+
+
+//Route to get data from the database, searchs by username and repository and then sends it back as json
 router.get('/db', (req, res) => {
-    //var format = req.query.format;
+
     var usernameV = req.query.username;
     var repositoryV = req.query.repository;
     var id = "5cb258ad77fcbc46f49f6020"
-    //const objNote = { 'username' : usernameV, 'repository' : repositoryV };
-    //console.log(usernameV + " wot " + repositoryV);
-    //console.log(typeOf(repositoryV));
+
     globalVariable.db.find({ 'username' : usernameV}, {'repository' : repositoryV }).toArray(function(err, documents) {
-        var value = JSON.stringify(documents);
+        var value = documents;
         console.log(typeOf(value));
         if(err){
             res.send({ error: "Could not find username in repository specificed" });
@@ -58,6 +43,11 @@ router.get('/db', (req, res) => {
 
 });
 
+
+
+//Post route to add a user to the database based on repository. It first checks if the user + repository exists, if either does not exist then it creates them based on the provided information
+//If they do exist then we go to the else condition where we iterate every single pr in this repository by this user, if they have done nothing new it does not change anything; however, (66-83)
+//if they have added new issues/prs then it is automatically added to a temp copy of the prs, and the user repository count is updated (line 89);
 router.post('/addToDB', cors(),(req, res) => {
   const note = { username : req.body.User , repoistory : req.body.Repository , pullRequests : JSON.stringify(JSON.parse(req.body.Repos), null, 2) };
   console.log(typeOf(note.username));
@@ -79,30 +69,32 @@ router.post('/addToDB', cors(),(req, res) => {
       var keyCountPRS  = Object.keys(allPRs).length;
       var newMap = new Map();
       for(var pos = 0; pos <  keyCountPRS; pos++){
-            //console.log(allPRs[pos].id);
+            
             newMap.set(allPRs[pos].id, pos);
       }
       var needToAdd = [];
       for(var pos = 0; pos < keyCount; pos++){
          var ID = currentPRs[pos].id;
          if(!(newMap.has(ID))){
-            //console.log(currentPRs[pos].id + " NOT IN ALLPRS");
+            
             needToAdd.push(currentPRs[pos]);
          }
       }
 
       for(var pos = 0; pos < needToAdd.length; pos++){
-        //console.log(needToAdd[pos]);
+       
         allPRs[(keyCountPRS)+pos] = needToAdd[pos];
       }
-      //console.log(allPRs);
+ 
       globalVariable.db.updateOne( {_id : item._id}, { $set : { pullRequests : JSON.stringify(allPRs, null, 2)}});
       needToAdd.length > 0 ? (console.log("Updated Database"), res.send("Updated Database")) : (console.log({'error' : ":  Username exists"}), res.send({'error': "Username exists"}));
     }
   });
-  //res.send('added to DB');
+  
 });
 
+
+//Searches by username to remove the user from the database, nothing extreme. 
 router.delete('/removeFromDB/:username', (req, res) => {
   const username = req.params.username;
   try{

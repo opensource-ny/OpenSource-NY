@@ -1,11 +1,10 @@
 /* Our front line of communication, clients will access this page first for any requests */
 
-const express        = require('express');
-var cors = require('cors')
-const MongoClient    = require('mongodb').MongoClient;//Used to create database for information to go to, online resource.
-const db             = require('config/db');//Used to link to the config of DataBase
-//var database_router = require.resolve('database_route.js');
+const express = require('express');
+const MongoClient  = require('mongodb').MongoClient;//Used to create database for information to go to, online resource.
 const bodyParser = require('body-parser');
+const db = require('config/db');//Used to link to the config of DataBase
+var cors = require('cors')
 var app = express();
 const port = 5000;
 const response = require('./response.js');
@@ -19,7 +18,7 @@ app.use(cors());
 
 
 console.log("Hello");
-// Let app start listening to port, will output error if anything goes wrong
+
 const client = new MongoClient(db.uri, { useNewUrlParser: true });
 client.connect(err => {
   const collection = client.db("openSourceRepos").collection("openSourceRepos");
@@ -28,7 +27,7 @@ client.connect(err => {
   if (err) return console.log(err)
    app.use('/dbRoute', assessmentRoutes);
 });
-
+// Let app start listening to port, will output error if anything goes wrong
 app.listen( port, handleListen(console.log, port) );      
   app.get('/', response.hello);
   app.get( '/express_backend', response.express_backend);

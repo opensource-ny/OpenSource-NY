@@ -1,15 +1,53 @@
-.App {
-  text-align: center;
-  background-color: #F0F0C9;
+.appBG {
+  display: flex;
+  flex-direction: column;
+  background: url('../Images/nyc_ss.jpg') no-repeat center center fixed;
+  min-height: 100%;
+  min-width: 1024px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
-.App-intro{
+.instruct {
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+}
+
+.logoInBG {
+  position: absolute;
+  bottom:0px;
+  left:41.3%;
+  display: block;
+  width: 256.5px;
+  height: 256.5px;
+  padding: 0 0 0 10px;  
+  z-index: 1;
+}
+
+.centeredText {
+  position: absolute;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  bottom: 15px;
+  left: 42.7%;
+  font-size: 46px;
+  color:whitesmoke;
+  z-index: 2;
+  opacity: 0.86;
+}
+
+/*.App-intro{
   font-family:Garamond, Georgia, serif;
   font-weight: bold;
 }
 
 .login {
   font-family: Garamond, Georgia, serif;
-}
+}*/
 
 /* opensource-ny/opensource-ny */

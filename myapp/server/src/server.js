@@ -34,4 +34,13 @@ app.listen( port, handleListen(console.log, port) );
   app.get( '/commits', response.commits);
  // app.get( '/pullrequest/:name', response.pullrequestName);
   app.get( '/express_backend', response.express_backend);
+<<<<<<< HEAD
   
+=======
+
+
+// Our API and their approtiate functions
+
+
+
+>>>>>>> master

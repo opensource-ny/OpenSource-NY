@@ -92,6 +92,7 @@ class PRdisplay extends Component {
   handleRepoSubmit() {
     this.resetFetchData();
     this.setState({ loading: true });
+<<<<<<< HEAD
 
    
     console.log("REPO OF STATE: " +this.state.repoName);
@@ -110,6 +111,10 @@ class PRdisplay extends Component {
       headers: {"Content-Type": "application/json"} 
     }) 
     .then(response =>{
+=======
+    
+    fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(response => {
+>>>>>>> master
       if(response.ok) {
         //console.log("RESPONSE OKAY" + JSON.stringify(response));
         console.log(response.clone().json());

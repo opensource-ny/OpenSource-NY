@@ -95,9 +95,9 @@ class PRdisplay extends Component {
     fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(response => {
       if(response.ok) {
         var result = response.json().then( objResult => {
-            //console.log("HELLLLLLLLLLLLLLLO  \n\n\n" + typeOf(this.state.githubUserName));
+            //This logic can be used to post the request to the DB, You could use /dbRoute/db (Params) to see if it already exists in the DB (Probably before the fetch (basically fetch(localhost:5000 ,{ params: { username : b, repository : c}}).then(something)
             if(this.state.githubUserName !== ''){
-                //console.log(typeOf(objResult) + " " + typeOf(jConv));
+               
                 let content;
                 var dataRequired = []; 
                 content = this.parseGithubPRJson(objResult, 'byName', this.state.githubUserName); 

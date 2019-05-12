@@ -19,12 +19,8 @@
   "homepage": "https://github.com/yizongk/OpenSource-NY#readme",
   "dependencies": {
     "cors": "^2.8.5",
-<<<<<<< HEAD
-    "express": "^4.16.4"
-=======
     "express": "^4.16.4",
     "mongodb": "^3.2.4",
     "request": "^2.88.0"
->>>>>>> 3d8c77d... Fixes to cherry-pick
   }
 }

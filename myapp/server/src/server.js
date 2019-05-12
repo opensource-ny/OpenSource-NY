@@ -1,39 +1,39 @@
 /* Our front line of communication, clients will access this page first for any requests */
 
 const express = require('express');
-const MongoClient  = require('mongodb').MongoClient;//Used to create database for information to go to, online resource.
-const bodyParser = require('body-parser');
-const db = require('config/db');//Used to link to the config of DataBase
 var cors = require('cors')
+const MongoClient  = require('mongodb').MongoClient;//Used to create database for information to go to, online resource.
+const db = require('./db.js');//Used to link to the config of DataBase
+//var database_router = require.resolve('database_route.js');
+const bodyParser = require('body-parser');
 var app = express();
 const port = 5000;
 const response = require('./response.js');
 const handleListen = require('./handleListen.js');
-//https://github.com/expressjs/cors
 
-app.use(bodyParser.json({limit: '100mb'}));
-app.use(bodyParser.urlencoded({limit: '100mb', extended: true}));
-app.use(cors());
+app.use(cors());//Future proofing as chrome/website use cors to authenticate requests
+
+app.use(bodyParser.json({limit: '100mb'})); //Utilizied to increase json transfer limit (jsons may get large based on repo's)
+app.use(bodyParser.urlencoded({limit: '100mb', extended: true}));//Same as previous reason
 
 
 
 console.log("Hello");
-
+// Let app start listening to port, will output error if anything goes wrong
 const client = new MongoClient(db.uri, { useNewUrlParser: true });
 client.connect(err => {
-  const collection = client.db("openSourceRepos").collection("openSourceRepos");
-  const { assessmentRoutes, initAssessmentRoutes } = require('database_route.js');
-  initAssessmentRoutes({db : collection});
+  const collection = client.db("openSourceRepos").collection("openSourceRepos");//Database (openSourceReports) in collection (The collection of databases openSourceRepos)
+  const { assessmentRoutes, initAssessmentRoutes } = require('./database.js'); //Initalizer to allow the database to be connect in express 4.x
+  initAssessmentRoutes({db : collection});//Assign database and collection
   if (err) return console.log(err)
-   app.use('/dbRoute', assessmentRoutes);
+   app.use('/dbRoute', assessmentRoutes); //Use routes (Basically, this is a generalize route where if you do dbRoute/(Anything)* it will route it correctly as long as the prefix (dbRoute) exists and the route exists
 });
-// Let app start listening to port, will output error if anything goes wrong
+
 app.listen( port, handleListen(console.log, port) );      
-  app.get('/', response.hello);
-  app.get( '/express_backend', response.express_backend);
+  //app.get('/', response.hello);
+  //app.get( '/express_backend', response.express_backend);
 
 
 // Our API and their approtiate functions
-
 
 

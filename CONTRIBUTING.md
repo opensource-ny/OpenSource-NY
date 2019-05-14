@@ -1,7 +1,7 @@
 # Stack information
   * Backend:
     - Express JS
-    - PostgressQL
+    - MongoDB
   * Frontend:
     - React JS
 
@@ -12,6 +12,40 @@
   * React lives in src/myapp/client/src/App.js
     - This js script will edit what you see on the main page of front end (http://localhost:3000/).
   
+# Submitting an Issue
+  Please feel free to submit any sort of issue that you think should be fixed, even if you are not sure, post it, we will have discuss it. Also submit Issue base on one problem, please do not group problems together and submit it as one Issue. We want to keep things organized and managable.
+
+  But please submit in this format:
+
+  ```
+  ### Context
+
+    Some words on the context of the problem, such as when it might happen, why you think it's a bad thing
+
+  ### Optional: Ideas on a Fix
+
+    Some words on what you might think could be a fix, this is for new comer to get a head start on trying to fix the issue. Again, these ideas may not necessarly be the correct way to go about fixing it, we will discuss.
+  ```
+
+# Submitting a Pull Request
+  Before submiting a Pull Request, please submit the issue first if the issue doesn't already exist. A Pull Request is only considered after an issue request has been verified by a maintainer to be an actual issue.
+
+  Please submit in this format:
+
+  ```
+  ### Referneces
+
+    Link reference to issue, try to keep refernces to only one issue, so we can unit test the Pull Request on that one issue. We want to keep things organized and managable
+
+  ### Context
+
+    Some words on the context of the problem, such as when it might happen, why you think it's a bad thing. As well as an overview on what you have done to fix it. 
+
+  ### The Fix
+
+    A detailed explanation of what you did, as well as why you did it.
+  ```
+
 
 # Workflow
   Please use the standard git work flow. 

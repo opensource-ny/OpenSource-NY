@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/yizongk/OpenSource-NY#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongodb": "^3.2.4",
+    "request": "^2.88.0"
   }
 }

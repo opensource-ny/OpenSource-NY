@@ -2,6 +2,9 @@ import React, {Component} from "react"
 import PullRequest from './PullRequest'
 import '../Styles/PRdisplay.css';
 
+function typeOf(obj) {
+  return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
+}
 class PRdisplay extends Component {
 
   constructor(props){
@@ -71,7 +74,10 @@ class PRdisplay extends Component {
   }
 
   handleInputChange(event){ 
+  console.log("handleInputChange: " + event.target.name);
     if( event.target.name === 'repoName' ) {
+      
+      
       this.handleRepoChange(event);
       return;
     }
@@ -86,10 +92,55 @@ class PRdisplay extends Component {
   handleRepoSubmit() {
     this.resetFetchData();
     this.setState({ loading: true });
-
-    fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(response => {
+    
+    
+   // fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(response => {
+    /*fetch(`/pullrequest/${this.state.repoName}`, 
+    {
+      method:'GET'
+    }) */
+    fetch(`/pullrequest`,
+    {
+      method:'POST',
+     body: JSON.stringify({
+        repo:this.state.repoName
+      }),
+      headers: {"Content-Type": "application/json"} 
+    }) 
+    .then(response => {
       if(response.ok) {
-        return response.json();   // This object if an json which contain an array of PR in json format.
+        console.log(response.clone().json());
+        var result = response.json().then( objResult => {
+            //This logic can be used to post the request to the DB, You could use /dbRoute/db (Params) to see if it already exists in the DB (Probably before the fetch (basically fetch(localhost:5000 ,{ params: { username : b, repository : c}}).then(something)
+            if(this.state.githubUserName !== ''){
+               
+                let content;
+                var dataRequired = []; 
+                content = this.parseGithubPRJson(objResult, 'byName', this.state.githubUserName); 
+                var keyCount  = Object.keys(content).length;
+                for(var pos = 0; pos < keyCount; pos++){
+                    dataRequired.push( {user : content[pos].user.login, title : content[pos].title, id: content[pos].id, url : content[pos].html_url});
+                }
+                fetch('http://127.0.0.1:5000/dbRoute/addToDB', {
+                  method: 'POST',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+	                "User" : this.state.githubUserName,
+	                "Repository" : this.state.repoName,
+	                "Repos" : JSON.stringify(dataRequired)
+                    })
+                })
+                
+                
+            }
+            
+            return objResult;
+         });
+            console.log("after" + result);
+            return result;   // This object if an json which contain an array of PR in json format.
       } else {
         throw new Error(`Cannot find any data on repo ${this.state.repoName}`);
       }

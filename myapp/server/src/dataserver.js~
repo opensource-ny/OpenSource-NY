@@ -1,0 +1,22 @@
+const express = require('express'),
+database = require('..../routes/database_route')
+;//In order to use express to create simple framework
+const bodyParser = require('body-parser');
+const hostname = '127.0.0.1';
+const http = require('http');
+const https = require('https');
+const app = express();
+const querystring = require('querystring'); 
+const port = 8000;
+var url = require('url'); 
+var fs = require('fs');
+var request = require('request');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+//require('./app/routes/Paypal_routes.js')(app);//Load routes to use functionality from other files (app._action)
+app.listen(port, hostname, () => { //start server
+    console.log(`Server running at http://${hostname}:${port}/`);
+}); 
+
+app.use('/dbRoute', database);

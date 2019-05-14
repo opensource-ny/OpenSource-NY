@@ -107,8 +107,8 @@ class PRdisplay extends Component {
       headers: {"Content-Type": "application/json"} 
     }) 
     .then(response => {
-      console.log(response.clone().json());
       if(response.ok) {
+        console.log(response.clone().json());
         var result = response.json().then( objResult => {
             //This logic can be used to post the request to the DB, You could use /dbRoute/db (Params) to see if it already exists in the DB (Probably before the fetch (basically fetch(localhost:5000 ,{ params: { username : b, repository : c}}).then(something)
             if(this.state.githubUserName !== ''){

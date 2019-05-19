@@ -1,5 +1,7 @@
 .navBG {
-  background: url('../Images/nav_bg1.jpg');
+  background: url('../Images/1.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
   width: 100%;
   height: 42px;
   letter-spacing: 4px;

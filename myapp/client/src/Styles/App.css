@@ -1,7 +1,10 @@
 .appBG {
   display: flex;
   flex-direction: column;
-  background: url('../Images/nyc_ss.jpg') no-repeat center center fixed;
+  background: url('../Images/2.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   min-height: 100%;
   min-width: 1024px;
   width: 100%;
@@ -26,7 +29,7 @@
   width: 256.5px;
   height: 256.5px;
   padding: 0 0 0 10px;  
-  z-index: 1;
+  z-index: -1;
 }
 
 .centeredText {
@@ -39,6 +42,7 @@
   color:whitesmoke;
   z-index: 2;
   opacity: 0.86;
+  z-index: -1;
 }
 
 /*.App-intro{

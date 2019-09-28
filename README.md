@@ -80,3 +80,6 @@ sudo apt-get install postgresql postgresql-contrib
     - MUST ASK Jessie Contour for feedback at contour.j@gmail.com
 <h2>OpenSourceNY App</h2>
 
+If you have the server set up in a LAN envirnoment, you can access the website locally. For linux, type in ifconfig, look for your eth0 ip address or wlan0's inet address. Then type that address in with ':3000' to access port 3000. 
+
+Happy Hacking!

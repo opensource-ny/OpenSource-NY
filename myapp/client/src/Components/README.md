@@ -9,7 +9,8 @@ Clicking the GitHub button redirects the user to the project home page, which ca
 Clicking the About button redirects the user to the project ReadMe, which can be found [here](https://github.com/opensource-ny/OpenSource-NY/blob/master/README.md).
 
 ### RankElement.js
-This file contains the RankElement component. RankElement has three states: 1. rank
+This file contains the RankElement component. RankElement has three states: 
+1. rank
 	* The rank of the the contributer determines how much the contributer has contributed to the project relative to the other contributers, where rank 1 means most contributions. 
 2. name
 	* GitHub username of the contributer.

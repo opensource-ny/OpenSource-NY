@@ -93,20 +93,11 @@ class PRdisplay extends Component {
     this.resetFetchData();
     this.setState({ loading: true });
     
-    
-   // fetch(`https://api.github.com/repos/${this.state.repoName}/pulls?state=all`).then(response => {
-    /*fetch(`/pullrequest/${this.state.repoName}`, 
+  
+    fetch(`/api/pullrequest/?repo=${this.state.repoName}`, 
     {
       method:'GET'
-    }) */
-    fetch(`/pullrequest`,
-    {
-      method:'POST',
-     body: JSON.stringify({
-        repo:this.state.repoName
-      }),
-      headers: {"Content-Type": "application/json"} 
-    }) 
+    })
     .then(response => {
       if(response.ok) {
         console.log(response.clone().json());
@@ -318,5 +309,14 @@ class PRdisplay extends Component {
     )
   }
 }
+/* fetch call for commits:
+
+fetch(`/api/commits/?repo=${this.state.repoName}&username=${this.state.githubUserName}`, 
+    {
+      method:'GET'
+    })
+
+
+*/
 
 export default PRdisplay

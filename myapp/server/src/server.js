@@ -10,12 +10,13 @@ var app = express();
 const port = 5000;
 const response = require('./response.js');
 const handleListen = require('./handleListen.js');
+const apiResponse = require('./apiresponse.js');
 
 app.use(cors());//Future proofing as chrome/website use cors to authenticate requests
 
 app.use(bodyParser.json({limit: '100mb'})); //Utilizied to increase json transfer limit (jsons may get large based on repo's)
 app.use(bodyParser.urlencoded({limit: '100mb', extended: true}));//Same as previous reason
-
+app.use('/api', apiResponse);
 
 
 console.log("Hello");
@@ -34,11 +35,13 @@ client.connect(err => {
 //app.use('/dbRoute', assessmentRoutes); //Use routes (Basically, this is a generalize route where if you do dbRoute/(Anything)* it will route it correctly as long as the prefix (dbRoute) exists and the route exists
 
 
-app.listen( port, handleListen(console.log, port) );      
+app.listen( port, handleListen(console.log, port) );    
+
+app.use('/api', apiResponse);
   //app.get('/', response.hello);
   //app.get( '/express_backend', response.express_backend);
-  app.post( '/pullrequest', response.pullrequest);
-  app.get( '/commits', response.commits);
+ // app.post( '/pullrequest', response.pullrequest);
+  //app.get( '/commits', response.commits);
 
 
 // Our API and their approtiate functions

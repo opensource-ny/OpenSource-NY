@@ -9,12 +9,19 @@
     -webkit-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
     box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
-    z-index: 3;
 }
 
 .prNumber{
     font-size: 1.5em;
     font-weight: 400;
+}
+
+.prNumber a:link{
+    color: black;
+}
+
+.prNumber a:visited{
+    color: black;
 }
 
 .prTitle {

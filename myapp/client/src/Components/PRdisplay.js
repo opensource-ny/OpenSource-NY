@@ -1,6 +1,7 @@
-import React, {Component} from "react"
-import PullRequest from './PullRequest'
+import React, {Component} from "react";
+import PullRequest from './PullRequest';
 import '../Styles/PRdisplay.css';
+import loadingmodal from '../Images/loading.red.gif';
 
 function typeOf(obj) {
   return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
@@ -301,8 +302,7 @@ class PRdisplay extends Component {
             
             <hr />
             {/* In the future, should only update output when submit button is hit or enter key is hit on input field. As of right now it constantly updates, which may not be good for us. */}
-            {this.state.loading ? <h2>loading</h2> : <div></div>}
-            {content}
+            {this.state.loading ? <img src={loadingmodal}></img> : content }
 
         </div>
       </div>

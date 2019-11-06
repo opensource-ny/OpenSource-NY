@@ -15,11 +15,22 @@ This file contains the RankElement component. RankElement has three states:
 2. name
 	* GitHub username of the contributer.
 3. score
-	* [NOTE TO SELF* FIND OUT ABOUT THIS]
+	* Issue: Currently not implemented into the project
 
-The render() function returns the html and embedded Javascript that the website displays when the class is called. 
+The render() function returns the html that the website displays when the class is called. 
 
 The styles associated with className "rankElement", "ranks", and "score" can be found [here](https://github.com/opensource-ny/OpenSource-NY/blob/master/myapp/client/src/Styles/RankElement.css).
 
+### Ranks.js
+The Ranks component has a render() function that returns the html containing the Ranking Stats. The styling of this html can be found [here](https://github.com/opensource-ny/OpenSource-NY/blob/master/myapp/client/src/Styles/Ranks.css). 
 
+The contents of this html depends on the divScoreSystem() method, which chooses one of the options in this.option to base the rankings off of. 
 
+The reportScoreList( scoreList) function returns the html for the Score List. 
+
+The options themselves are implemented in parseGithubPRJsonToScoreList( githubPRJsonSet, scoreOption ), which returns a formatted list of scores that is sorted by descending order.
+
+The removeDuplicateAndKeepCount( PRdata ) function takes in pull request data and returns an array finalRankCount containing objects named rankCount which has two members, name (to keep track of the GitHub username) and count (for the number of duplicates). 
+
+Repo name:
+opensource-ny/opensource-ny 

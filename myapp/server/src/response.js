@@ -1,5 +1,5 @@
 /* Will contain all the response that the server will send out base on requests */
-request=require('request');
+const request = require('request');
 
 module.exports = { 
     hello: (req, res) => {

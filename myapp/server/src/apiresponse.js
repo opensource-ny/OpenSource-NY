@@ -1,5 +1,5 @@
 const router = require("express").Router();
-request=require('request');
+const request = require('request');
 
 //returns all pullrequests from a repo given through a query 
 router.get('/pullrequest', (req, res) => {

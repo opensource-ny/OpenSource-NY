@@ -1,6 +1,7 @@
-import React, {Component} from "react"
-import PullRequest from './PullRequest'
+import React, {Component} from "react";
+import PullRequest from './PullRequest';
 import '../Styles/PRdisplay.css';
+import loadingmodal from '../Images/loading.red.gif';
 
 function typeOf(obj) {
   return {}.toString.call(obj).split(' ')[1].slice(0, -1).toLowerCase();
@@ -17,6 +18,7 @@ class PRdisplay extends Component {
       error: null,
       loading: this.props.loading,
       githubPRsData: this.props.githubPRsData,
+      firstTime: true,    /*  Tracks if it's a freshly refreshed page or not */
     }
   }
 
@@ -91,7 +93,10 @@ class PRdisplay extends Component {
 
   handleRepoSubmit() {
     this.resetFetchData();
-    this.setState({ loading: true });
+    this.setState({ 
+      loading: true,
+      firstTime: false,
+    });
     
   
     fetch(`/api/pullrequest/?repo=${this.state.repoName}`, 
@@ -256,12 +261,11 @@ class PRdisplay extends Component {
   render(){
     let content;
     if(this.state.error === null){
-      /* console.log(this.state.githubPRsData) */
-      content = this.reportPRListDetailed( this.parseGithubPRJson(this.state.githubPRsData, 'byName', this.state.githubUserName) )
-      /* content = this.state.githubPRsData.map((githubPRsData) => (
-          <PullRequest key={githubPRsData.id} content={githubPRsData}/>
-        )
-      ) */
+      if(this.state.firstTime === true) {
+        content = <div></div>
+      } else {
+        content = this.reportPRListDetailed( this.parseGithubPRJson(this.state.githubPRsData, 'byName', this.state.githubUserName) )
+      }
     } else {
       content = <div>
         <h2>{this.state.error.message}</h2>
@@ -301,8 +305,7 @@ class PRdisplay extends Component {
             
             <hr />
             {/* In the future, should only update output when submit button is hit or enter key is hit on input field. As of right now it constantly updates, which may not be good for us. */}
-            {this.state.loading ? <h2>loading</h2> : <div></div>}
-            {content}
+            {this.state.loading ? <img src={loadingmodal}></img> : content }
 
         </div>
       </div>

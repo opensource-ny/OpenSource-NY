@@ -6,7 +6,7 @@ class RankElement extends Component {
         super(props);
 
         this.state = {
-            rank: this.props.rank + 1,
+            rank: this.props.rank,
             name: this.props.name,
             score: this.props.score,
         }
@@ -17,7 +17,7 @@ class RankElement extends Component {
         return(
             <div className="rankElement">
                 <div className="ranks">
-                    #{this.state.rank} 
+                    #{this.state.rank + 1} 
 
                     {this.state.name}
 

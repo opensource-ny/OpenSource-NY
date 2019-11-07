@@ -1,0 +1,26 @@
+version: '3'
+services:
+    client:
+        build: ./myapp/client
+        ports:
+            - 3000:3000
+        container_name: osny-client
+        volumes:
+            - ./myapp/client/src:/client/src
+            - ./myapp/client/public:/client/public
+        depends_on:
+            - server
+    server:
+        build: ./myapp/server
+        ports:
+            - 5000:5000
+        container_name: osny-server
+        volumes:
+            - ./myapp/server/src:/server/src
+    # db:
+    #     image: postgres:12.0-alpine
+    #     ports:
+    #         - 5432:5432
+    #     container_name: osny-db
+    #     environment:
+    #         - POSTGRES_PASSWORD=postgres

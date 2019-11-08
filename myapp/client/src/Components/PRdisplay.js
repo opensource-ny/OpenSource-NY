@@ -161,24 +161,6 @@ class PRdisplay extends Component {
     }
 
     render() {
-        let content = '<div></div>';
-        if (!this.state.error) {
-            content = this.reportPRListDetailed(
-                this.parseGithubPRJson(
-                    this.props.githubPRsData,
-                    'byName',
-                    this.state.githubUserName
-                )
-            );
-        } else {
-            content = (
-                <div>
-                    <h2>{this.state.error.message}</h2>
-                    Error: {this.state.repoName} is invalid repository name.
-                </div>
-            );
-        }
-
         return (
             <div className="PRs">
                 <div className="PullContainer">
@@ -213,10 +195,20 @@ class PRdisplay extends Component {
                     </div>
                     <hr />
                     {/* In the future, should only update output when submit button is hit or enter key is hit on input field. As of right now it constantly updates, which may not be good for us. */}
+                    <div>
+                        {this.state.error ? <h2>{this.state.error}</h2> : null}
+                    </div>
+
                     {this.state.loading ? (
                         <img src={loadingmodal}></img>
                     ) : (
-                        content
+                        this.reportPRListDetailed(
+                            this.parseGithubPRJson(
+                                this.props.githubPRsData,
+                                'byName',
+                                this.state.githubUserName
+                            )
+                        )
                     )}
                 </div>
             </div>

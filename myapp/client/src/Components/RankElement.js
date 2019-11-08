@@ -17,7 +17,7 @@ class RankElement extends Component {
         return(
             <div className="rankElement">
                 <div className="ranks">
-                    #{this.state.rank} 
+                    #{this.state.rank + 1} 
 
                     {this.state.name}
 

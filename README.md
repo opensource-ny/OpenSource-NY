@@ -76,7 +76,9 @@ sudo apt-get install postgresql postgresql-contrib
 > ```bash
 > docker-compose up # The first time you do this, it will build the image, which may take a while.
 > ```
+> Now open your browser to localhost:3000 to access the website.
 > 
+> Currently, docker-compose doesn't auto bring your browser to localhost:3000 like npm start does. Someone should help us config to make it happen!
 > ### To rebuild the image
 > You need to rebuild everytime your add/remove in a package using npm
 > ```bash

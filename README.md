@@ -25,46 +25,63 @@ sudo apt-get install postgresql postgresql-contrib
 
 # How to run
 
-1. In one terminal, run this to get the server running (only need to do npm install on your first time, to install all the node_modules):
+## Running with npm
+> 1. In one terminal, run this to get the server running (only need to do npm install on your first time, to install all the node_modules):
+> 
+> ```bash
+> cd src/myapp/server
+> npm install
+> npm start
+> ```
+> 
+> 2. In a second terminal, run this to get the front end running (only need to do npm install on your first time, to install all the node_modules):
+> 
+> ```bash
+> cd src/myapp/client
+> npm install
+> npm start
+> ```
+> 
+> 3. Now go to your browser and open http://localhost:3000/
+>    Voila!
+> 
+> _NOTE_: When npm start on REACT, you maybe run into this error:
+> 
+> ```
+> fs.js:1384
+>   throw error;
+> ```
+> 
+> To fix: [Reference](https://github.com/facebook/jest/issues/3254)
+> 
+> -   add 'fs.inotify.max_user_watches=20000' without the single quotes into your /etc/sysctl.conf on the very last line. Change the number to however much you want. The error aboves results from the number being too small, so change it to a big enough number. How big? I don't know, depends on how much files you have in your REACT App.
+> -   After you edit that file, run the following to load in the [sysctl](https://linux.die.net/man/8/sysctl) setting from /etc/sysctl.conf
+> 
+> ```shell
+> sudo sysctl -p
+> ```
 
-```bash
-cd src/myapp/server
-npm install
-npm start
-```
-
-2. In a second terminal, run this to get the front end running (only need to do npm install on your first time, to install all the node_modules):
-
-```bash
-cd src/myapp/client
-npm install
-npm start
-```
-
-3. Now go to your browser and open http://localhost:3000/
-   Voila!
-
-_NOTE_: When npm start on REACT, you maybe run into this error:
-
-```
-fs.js:1384
-  throw error;
-```
-
-To fix: [Reference](https://github.com/facebook/jest/issues/3254)
-
--   add 'fs.inotify.max_user_watches=20000' without the single quotes into your /etc/sysctl.conf on the very last line. Change the number to however much you want. The error aboves results from the number being too small, so change it to a big enough number. How big? I don't know, depends on how much files you have in your REACT App.
--   After you edit that file, run the following to load in the [sysctl](https://linux.die.net/man/8/sysctl) setting from /etc/sysctl.conf
-
-```shell
-sudo sysctl -p
-```
-
-## Running with docker compose
-
-```bash
-docker-compose up
-```
+## Running with docker compose 
+### _(One liner command to start up both server and client)_
+> 
+> ### Install docker and docker-compose (instructions for pacman package manager)
+> ```bash
+> sudo pacman -S docker docker-compose
+> sydo systemctl status docker   # Look at the result, make sure it's loaded and active
+> # To make it active, do the following line, else skip the following line
+> sudo systemctl start docker
+> ```
+> 
+> ### To start up the application
+> ```bash
+> docker-compose up # The first time you do this, it will build the image, which may take a while.
+> ```
+> 
+> ### To rebuild the image
+> You need to rebuild everytime your add/remove in a package using npm
+> ```bash
+> docket-compose build # This process can take a while.
+> ```
 
 # How to contribute
 

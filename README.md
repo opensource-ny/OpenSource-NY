@@ -30,7 +30,7 @@ sudo apt-get install postgresql postgresql-contrib
 > 
 > ```bash
 > cd src/myapp/server
-> npm install
+> npm install -dev
 > npm start
 > ```
 > 
@@ -38,7 +38,7 @@ sudo apt-get install postgresql postgresql-contrib
 > 
 > ```bash
 > cd src/myapp/client
-> npm install
+> npm install -dev
 > npm start
 > ```
 > 

@@ -36,7 +36,7 @@ The removeDuplicateAndKeepCount( PRdata ) function takes in pull request data an
 The ScoreBoard component has a render function that displays the ranks data. There is also a "loading" feature that tells the user when the scoreboard is loading. The styling of the scoreboard can be found [here](https://github.com/opensource-ny/OpenSource-NY/blob/master/myapp/client/src/Styles/ScoreBoard.css).
 
 ### PullRequest.js
-The PullRequest component has the following states:
+The PullRequest component has the following states:  
 	1. PRnumber: This is the unique id number that distinguishes pull requests from one another  
 	2. PRtitle: This is title of the pull request.  
 	3. PRlink: This is the GitHub link to the pull request.  

@@ -32,5 +32,10 @@ The options themselves are implemented in parseGithubPRJsonToScoreList( githubPR
 
 The removeDuplicateAndKeepCount( PRdata ) function takes in pull request data and returns an array finalRankCount containing objects named rankCount which has two members, name (to keep track of the GitHub username) and count (for the number of duplicates). 
 
+### ScoreBoard.js
+The ScoreBoard component has a render function that displays the ranks data. There is also a "loading" feature that tells the user when the scoreboard is loading. The styling of the scoreboard can be found [here](https://github.com/opensource-ny/OpenSource-NY/blob/master/myapp/client/src/Styles/ScoreBoard.css).
+
+
+
 Repo name:
 opensource-ny/opensource-ny 

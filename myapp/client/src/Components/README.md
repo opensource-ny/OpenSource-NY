@@ -46,6 +46,7 @@ The PullRequest component has the following states:
 
 The PullRequest component has a render function that returns the merge_status (PRState), a url to the pull request, the author of the post request and the title of the pull request.
 
+The styling can be found [here](https://github.com/opensource-ny/OpenSource-NY/blob/master/myapp/client/src/Styles/PullRequest.css).
 
 
 

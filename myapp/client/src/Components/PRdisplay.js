@@ -199,17 +199,19 @@ class PRdisplay extends Component {
                         {this.state.error ? <h2>{this.state.error}</h2> : null}
                     </div>
 
-                    {this.state.loading ? (
-                        <img src={loadingmodal}></img>
-                    ) : (
-                        this.reportPRListDetailed(
-                            this.parseGithubPRJson(
-                                this.props.githubPRsData,
-                                'byName',
-                                this.state.githubUserName
+                    <div className="pullRequestContainer">
+                        {this.state.loading ? (
+                            <img src={loadingmodal}></img>
+                        ) : (
+                            this.reportPRListDetailed(
+                                this.parseGithubPRJson(
+                                    this.props.githubPRsData,
+                                    'byName',
+                                    this.state.githubUserName
+                                )
                             )
-                        )
-                    )}
+                        )}
+                    </div>
                 </div>
             </div>
         );

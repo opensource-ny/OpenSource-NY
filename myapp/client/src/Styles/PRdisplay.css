@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     flex-flow: column;
-    max-width: 40%;
+    max-width: 50%;
     -webkit-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
     box-shadow: 2.5px 2.5px 5px 0px rgba(0,0,0,0.5);
@@ -31,11 +31,12 @@
 .warning, .good {
     font-size: 1.5em;
     font-weight: 400;
-    /* height: 1.6em; */
+    display: block;
     width: 100%;
     border-radius: 15px;
     padding: 0.2em;
-    margin: 0.2em;
+    margin: 0.4em 0;
+    box-sizing: border-box;
 }
 
 .submitBtn {
@@ -61,6 +62,10 @@
     /* border: solid 1px black; */
     align-items: center;
     justify-content: center;
-} 
+}
+
+.inputBox form {
+    width: 100%;
+}
 
 /* opensource-ny/OpenSource-NY */

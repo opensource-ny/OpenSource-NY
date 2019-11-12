@@ -13,7 +13,7 @@ class PRdisplay extends Component {
             githubUserName: '',
             error: null,
             loading: this.props.loading,
-            content: []
+            content: [],
         };
 
         this._handleRepoSubmit = this._handleRepoSubmit.bind(this);
@@ -29,7 +29,7 @@ class PRdisplay extends Component {
         this.setState({
             loading: true,
             firstTime: false,
-            data: null
+            data: null,
         });
 
         this.props.updateScoreBoard([]);
@@ -63,12 +63,16 @@ class PRdisplay extends Component {
         //check if repo name is valid, change to regex
         let error = null;
         if (value && !value.includes('/')) error = 'Not valid repo name';
-        this.setState({ repoName: value, error });
+        this.setState({ 
+            repoName: value, error,
+        });
     }
 
     _handleGithubUserName(e) {
         const value = e.target.value;
-        this.setState({ githubUserName: value, error: null });
+        this.setState({ 
+            githubUserName: value, error: null,
+        });
     }
 
     /* parse an array of json objects describing PR from github based on a condition
@@ -109,7 +113,6 @@ class PRdisplay extends Component {
         if (dataPR.length === 0) {
             return (
                 <div>
-                    <h3>Found no data</h3>
                 </div>
             );
         }
@@ -150,7 +153,6 @@ class PRdisplay extends Component {
         if (dataPR.length === 0) {
             return (
                 <div>
-                    <h3>Found no data</h3>
                 </div>
             );
         }
@@ -161,6 +163,12 @@ class PRdisplay extends Component {
     }
 
     render() {
+        const filteredPRData = this.parseGithubPRJson(
+            this.props.githubPRsData,
+            'byName',
+            this.state.githubUserName
+        )
+
         return (
             <div className="PRs">
                 <div className="PullContainer">
@@ -200,15 +208,13 @@ class PRdisplay extends Component {
                     </div>
 
                     {this.state.loading ? (
-                        <img src={loadingmodal}></img>
+                        <img alt="loadingmodal" src={loadingmodal}></img>
                     ) : (
-                        this.reportPRListDetailed(
-                            this.parseGithubPRJson(
-                                this.props.githubPRsData,
-                                'byName',
-                                this.state.githubUserName
-                            )
-                        )
+                        <div className={filteredPRData.length == 0 ? null : "pullRequestContainer"}>
+                        {
+                            this.reportPRListDetailed( filteredPRData )
+                        }
+                        </div>
                     )}
                 </div>
             </div>

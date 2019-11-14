@@ -48,7 +48,8 @@ The PullRequest component has a render function that returns the merge_status (P
 
 The styling can be found [here](https://github.com/opensource-ny/OpenSource-NY/blob/master/myapp/client/src/Styles/PullRequest.css).
 
-
+### Home.js
+This file contains the Home component, which has shows the PRdisplay and Scoreboard components (mentioned above).
 
 Repo name:
 opensource-ny/opensource-ny 

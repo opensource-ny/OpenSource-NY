@@ -57,12 +57,20 @@ The PRdisplay component has the following states:
 	5. loading: A boolean that returns true is the page isn't loaded yet. 
 	6. githubPRsData: The pull request data, such as bug fixes, added features, etc. 
 
-The resetFetchData() method is a helper that sets data to null and githubPRsData to an empty array.
+The resetFetchData() function is a helper that sets data to null and githubPRsData to an empty array.
 
-The componentDidMount() method 
+The componentDidMount() function calls the callBackendAPI function and throws an error if this fails.
 
+The callBackendAPI function fetches the GET route from the express server (from server.js).
+
+The handleRepoChange(event) function validates whether event is in the form 'Github_user_name/repo_name'. 
+
+The render() function returns the pull request data.
 ### Home.js
 This file contains the Home component, which has shows the PRdisplay and Scoreboard components (mentioned above).
+
+
+
 
 Repo name:
 opensource-ny/opensource-ny 

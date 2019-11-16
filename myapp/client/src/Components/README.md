@@ -49,13 +49,13 @@ The PullRequest component has a render function that returns the merge_status (P
 The styling can be found [here](https://github.com/opensource-ny/OpenSource-NY/blob/master/myapp/client/src/Styles/PullRequest.css).
 
 ### PRdisplay.js
-The PRdisplay component has the following states:
-	1. data: 
-	2. repoName: In the form: 'Github_user_name/repo_name'.
-	3. githubUserName
-	4. error
-	5. loading: A boolean that returns true is the page isn't loaded yet. 
-	6. githubPRsData: The pull request data, such as bug fixes, added features, etc. 
+The PRdisplay component has the following states:  
+	1. data:   
+	2. repoName: In the form: 'Github_user_name/repo_name'.  
+	3. githubUserName  
+	4. error  
+	5. loading: A boolean that returns true is the page isn't loaded yet.   
+	6. githubPRsData: The pull request data, such as bug fixes, added features, etc.   
 
 The resetFetchData() function is a helper that sets data to null and githubPRsData to an empty array.
 

@@ -19,9 +19,9 @@
 }
 
 .logoInBG {
-  /* position: absolute; */
+  position: absolute;
   bottom:0px;
-  left:41.3%;
+  left:0%;
   display: block;
   width: 256.5px;
   height: 256.5px;

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="689" height="689.483" viewBox="0 0 689 689.483">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="empire-state-building-manhattan-new-york-eeuu" transform="translate(218.638 157.613)">
+    <circle id="Ellipse_2" data-name="Ellipse 2" cx="344.5" cy="344.5" r="344.5" transform="translate(-218.638 -157.613)"/>
+    <ellipse id="Ellipse_3" data-name="Ellipse 3" class="cls-1" cx="246" cy="246.5" rx="246" ry="246.5" transform="translate(-119.638 -59.613)"/>
+    <ellipse id="Ellipse_1" data-name="Ellipse 1" cx="200.5" cy="201" rx="200.5" ry="201" transform="translate(-74.638 -13.613)"/>
+    <path id="Path_1" data-name="Path 1" class="cls-1" d="M202.5,522.759V305.312H186.265V263.965H163.249V222.521h-11c-3.255-8.308-11.233-47.6-12.379-71.306-1.146-25.072-.367-21.553-.046-26.587a16.362,16.362,0,0,0,.734-4.985c0-6.745-4.081-12.463-9.628-14.369V11.632L125.653,0l-5.685,11.632v95.059a15.205,15.205,0,0,0-6.923,13,14.545,14.545,0,0,0,.413,3.421H113s1.421-1.906,0,28.053c-1.009,23.752-9.032,63.047-12.288,71.355h-11.1v41.445H65.132v41.347H50.139V522.759s36.236,9.11,74.325,9.11S202.5,522.759,202.5,522.759Z" transform="translate(0)"/>
+    <path id="Path_8" data-name="Path 8" class="cls-1" d="M0,0H65V115.036s-13.944,1.467-31.253,1.558S0,115.036,0,115.036Z" transform="translate(265.081 372.067) rotate(-45)"/>
+  </g>
+</svg>

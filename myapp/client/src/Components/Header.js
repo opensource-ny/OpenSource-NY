@@ -1,6 +1,6 @@
 import React from "react"
 import '../Styles/Header.css';
-import Logo from '../Images/OSNY-Logov2.svg'
+import Logo from '../Images/OSNYdark.svg'
 
 function Header(){
     return(
